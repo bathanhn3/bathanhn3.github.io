@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if page.title %}{{ page.title }}{% else %}Default Title{% endif %}</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <header>
+    <h1>{% if site.name %}{{ site.name }}{% else %}Default Site Name{% endif %}</h1>
+    <nav>
+      <ul>
+        {% if site.navigation_links %}
+          {% for link in site.navigation_links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welcome to {% if page.title %}{{ page.title }}{% else %}Default Page{% endif %}</h2>
+      <p>{% if page.content %}{{ page.content }}{% else %}Default Content{% endif %}</p>
+    </section>
+
+    <section>
+      <h2>Featured Products</h2>
+      <ul>
+        {% if collections.featured_products and collections.featured_products.products %}
+          {% for product in collections.featured_products.products %}
+            <li>
+              <img src="{{ product.featured_image.src }}" alt="{{ product.title }}">
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.price | money }}</p>
+              <button>Add to Cart</button>
+            </li>
+          {% endfor %}
+        {% endif %}
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; {{ 'now' | date: "%Y" }} {% if site.name %}{{ site.name }}{% else %}Default Site Name{% endif %}</p>
+  </footer>
+
+</body>
+</html>
