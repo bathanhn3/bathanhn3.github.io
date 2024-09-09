@@ -1,158 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Blog Tài Chính">
+    <meta name="description" content="Financial Knowledge Hub">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Blog Tài Chính</title>
+    <title>Financial Insights</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-        }
-        header .logo h1 {
-            margin: 0;
-            text-align: center;
-        }
-        header nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-        }
-        header nav ul li {
-            margin: 0 15px;
-        }
-        header nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-        .blog {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .blog h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .blog-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .blog-item {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 30%;
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        .blog-item:hover {
-            transform: translateY(-5px);
-        }
-        .blog-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-        .blog-item-content {
-            padding: 15px;
-        }
-        .blog-item-content h3 {
-            margin: 0 0 10px 0;
-            color: #333;
-        }
-        .blog-item-content p {
-            color: #666;
-            margin: 0;
-        }
-        .blog-item-content a {
-            display: inline-block;
-            margin-top: 15px;
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .blog-item-content a:hover {
-            text-decoration: underline;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #333;
-            color: white;
-            margin-top: 20px;
-        }
-        footer ul {
-            list-style: none;
-            padding: 0;
-        }
-        footer ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        footer ul li a {
-            color: white;
-            text-decoration: none;
-        }
-    </style>
 </head>
 <body>
     <!-- Header -->
     <header>
         <div class="logo">
-            <h1><a href="index.html" style="color: white;">MyStore</a></h1>
+            <h1><a href="#">Finance Hub</a></h1>
         </div>
         <nav>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Empower Your Financial Journey</h2>
+            <p>Get the latest insights and tips to master your personal finances.</p>
+            <a href="#" class="btn">Start Learning</a>
+        </div>
+    </section>
+
+    <!-- Financial Topics Section -->
+    <section class="topics">
+        <h2>Explore Financial Topics</h2>
+        <div class="topic-list">
+            <div class="topic-item">
+                <h3>Investment Tips</h3>
+                <p>Learn how to make smart investments and grow your wealth.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+            <div class="topic-item">
+                <h3>Budgeting Strategies</h3>
+                <p>Discover ways to manage your budget and save more.</p>
+                <a href="#" class="btn">Read More</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Blog Section -->
     <section class="blog">
-        <h2>Blog Tài Chính</h2>
+        <h2>Latest Blog Posts</h2>
         <div class="blog-list">
             <div class="blog-item">
-                <img src="https://via.placeholder.com/600x400" alt="Tài chính cá nhân cơ bản">
-                <div class="blog-item-content">
-                    <h3>Tài chính cá nhân cơ bản</h3>
-                    <p>Bài viết này sẽ chia sẻ các kiến thức cơ bản về quản lý tài chính cá nhân.</p>
-                    <a href="#">Đọc tiếp</a>
-                </div>
+                <h3>5 Steps to Build Your Emergency Fund</h3>
+                <p>Learn how to create a financial safety net with these simple steps.</p>
+                <a href="#" class="btn">Read More</a>
             </div>
             <div class="blog-item">
-                <img src="https://via.placeholder.com/600x400" alt="Lập kế hoạch tài chính">
-                <div class="blog-item-content">
-                    <h3>Lập kế hoạch tài chính</h3>
-                    <p>Cách lập kế hoạch tài chính để đạt được mục tiêu dài hạn.</p>
-                    <a href="#">Đọc tiếp</a>
-                </div>
+                <h3>Top Investment Mistakes to Avoid</h3>
+                <p>Protect your portfolio by avoiding these common pitfalls.</p>
+                <a href="#" class="btn">Read More</a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 MyStore. All rights reserved.</p>
+        <p>&copy; 2024 Finance Hub. All rights reserved.</p>
         <ul>
             <li><a href="#">Privacy Policy</a></li>
             <li><a href="#">Terms of Service</a></li>
