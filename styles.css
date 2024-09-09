@@ -1,38 +1,100 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+header {
+    background-color: #fff;
+    padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+header .logo h1 {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+}
+
+header nav ul li a {
+    font-size: 1rem;
+    color: #0073e6;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+header nav ul li a:hover {
+    background-color: #f0f0f0;
+}
+
 /* Hero Section */
 .hero {
-    background-image: url('financial-bg.jpg'); /* Add a finance-related image */
-    background-size: cover;
-    background-position: center;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(135deg, #0073e6, #00aaff);
     color: white;
     text-align: center;
+    padding: 4rem 0;
 }
 
 .hero h2 {
-    font-size: 36px;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
 }
 
-.hero .btn {
-    background-color: #0073e6;
-    padding: 10px 20px;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
 }
 
-.hero .btn:hover {
-    background-color: #005bb5;
+.hero .btn-primary {
+    background-color: white;
+    color: #0073e6;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    background-color: #f0f0f0;
 }
 
 /* Topics Section */
 .topics {
-    padding: 2rem;
+    padding: 2rem 0;
+    background-color: #fff;
     text-align: center;
+}
+
+.topics h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 .topic-list {
@@ -41,19 +103,45 @@
     flex-wrap: wrap;
 }
 
-.topic-item {
-    background-color: white;
-    padding: 1rem;
+.card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
     margin: 1rem;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
+    width: 300px;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.card p {
+    margin-bottom: 1.5rem;
+}
+
+.card .btn-secondary {
+    background-color: #0073e6;
+    color: white;
+    padding: 0.7rem 1.2rem;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.card .btn-secondary:hover {
+    background-color: #005bb5;
 }
 
 /* Blog Section */
 .blog {
-    padding: 2rem;
+    padding: 2rem 0;
     text-align: center;
+}
+
+.blog h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
 .blog-list {
@@ -62,11 +150,26 @@
     flex-wrap: wrap;
 }
 
-.blog-item {
-    background-color: white;
-    padding: 1rem;
-    margin: 1rem;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 200px;
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+footer ul li a {
+    color: white;
+    transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #00aaff;
 }
