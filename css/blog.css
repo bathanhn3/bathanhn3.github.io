@@ -1,12 +1,12 @@
 /* General Styles for Blog */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f9f9f9;
+    background-color: #f0f8ff;
     color: #333;
 }
 
 .container {
-    width: 80%;
+    width: 85%;
     max-width: 1000px;
     margin: 0 auto;
 }
@@ -14,52 +14,68 @@ body {
 header {
     background-color: #0073e6;
     color: white;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     text-align: center;
 }
 
 header .logo h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
 header nav ul {
     list-style: none;
     padding: 0;
-}
-
-header nav ul li {
-    display: inline;
-    margin: 0 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
 }
 
 header nav ul li a {
     color: white;
+    font-size: 1.2rem;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 header nav ul li a:hover {
-    text-decoration: underline;
+    color: #ffdd57;
 }
 
 /* Blog Post */
 .blog-post {
-    padding: 2rem 0;
+    padding: 3rem 0;
 }
 
 .blog-post article {
-    padding: 1.5rem;
+    padding: 2rem;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
 }
 
 .blog-post article h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
+    color: #0073e6;
     margin-bottom: 1rem;
 }
 
+.blog-post article h2, .blog-post article h3 {
+    color: #333;
+    margin-top: 1.5rem;
+}
+
 .blog-post article p {
-    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+.blog-post article ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+.blog-post article ul li {
+    margin-bottom: 0.5rem;
 }
 
 footer {
