@@ -1,68 +1,87 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="E-commerce Website">
+    <meta name="description" content="Financial Knowledge Hub">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My E-commerce Store</title>
+    <title>Financial Insights</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <div class="logo">
-            <h1><a href="#">MyStore</a></h1>
+        <div class="container">
+            <div class="logo">
+                <h1><a href="#">Finance Insights</a></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#" class="cart">Cart (0)</a></li>
-            </ul>
-        </nav>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h2>Discover the Best Products</h2>
-            <p>Shop the latest items now!</p>
-            <a href="#" class="btn">Shop Now</a>
+        <div class="container hero-content">
+            <h2>Empower Your Financial Journey</h2>
+            <p>Get the latest insights and tips to master your personal finances.</p>
+            <a href="#" class="btn-primary">Start Learning</a>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products">
-        <h2>Featured Products</h2>
-        <div class="product-list">
-            <div class="product-item">
-                <img src="product1.jpg" alt="Product 1">
-                <h3>Product 1</h3>
-                <p>$19.99</p>
-                <button class="btn">Add to Cart</button>
+    <!-- Topics Section -->
+    <section class="topics">
+        <div class="container">
+            <h2>Explore Financial Topics</h2>
+            <div class="topic-list">
+                <div class="card">
+                    <h3>Investment Tips</h3>
+                    <p>Learn how to make smart investments and grow your wealth.</p>
+                    <a href="#" class="btn-secondary">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Budgeting Strategies</h3>
+                    <p>Discover ways to manage your budget and save more.</p>
+                    <a href="#" class="btn-secondary">Read More</a>
+                </div>
             </div>
-            <div class="product-item">
-                <img src="product2.jpg" alt="Product 2">
-                <h3>Product 2</h3>
-                <p>$29.99</p>
-                <button class="btn">Add to Cart</button>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-list">
+                <div class="card">
+                    <h3>5 Steps to Build Your Emergency Fund</h3>
+                    <p>Learn how to create a financial safety net with these simple steps.</p>
+                    <a href="#" class="btn-secondary">Read More</a>
+                </div>
+                <div class="card">
+                    <h3>Top Investment Mistakes to Avoid</h3>
+                    <p>Protect your portfolio by avoiding these common pitfalls.</p>
+                    <a href="#" class="btn-secondary">Read More</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2024 MyStore. All rights reserved.</p>
-        <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-        </ul>
+        <div class="container">
+            <p>&copy; 2024 Finance Hub. All rights reserved.</p>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+            </ul>
+        </div>
     </footer>
 </body>
 </html>
