@@ -1,0 +1,70 @@
+/* General Styles for Blog */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #0073e6;
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+}
+
+header .logo h1 {
+    font-size: 2rem;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 1rem;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Blog Post */
+.blog-post {
+    padding: 2rem 0;
+}
+
+.blog-post article {
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.blog-post article h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post article p {
+    line-height: 1.8;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
