@@ -6,42 +6,81 @@ body {
 }
 
 .container {
-    width: 80%;
-    max-width: 1000px;
+    width: 85%;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
+/* Navbar */
 header {
     background-color: #0073e6;
     color: white;
     padding: 1rem 0;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 header .logo h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
-header nav ul {
+.navbar ul {
     list-style: none;
     padding: 0;
+    display: flex;
+    gap: 1.5rem;
 }
 
-header nav ul li {
+.navbar ul li {
     display: inline;
-    margin: 0 1rem;
 }
 
-header nav ul li a {
+.navbar ul li a {
+    font-size: 1.2rem;
     color: white;
     text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-header nav ul li a:hover {
-    text-decoration: underline;
+.navbar ul li a:hover {
+    background-color: #005bb5;
 }
 
-/* Blog List */
+/* Hero Section */
+.hero {
+    background-color: #f0f8ff;
+    padding: 5rem 0;
+    text-align: center;
+    color: #0073e6;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero .btn-primary {
+    background-color: #0073e6;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 30px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.hero .btn-primary:hover {
+    background-color: #005bb5;
+}
+
+/* Blog List Section */
 .blog-list {
     padding: 2rem 0;
 }
@@ -59,12 +98,14 @@ header nav ul li a:hover {
     font-size: 1.5rem;
     color: #0073e6;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .blog-list ul li a:hover {
-    text-decoration: underline;
+    color: #005bb5;
 }
 
+/* Footer */
 footer {
     background-color: #333;
     color: white;
