@@ -145,7 +145,9 @@ header .logo h1 a:hover {
 }
 
 .navbar ul li {
-    display: inline;
+    display: flex;
+    align-items: center;
+    background: transparent;
 }
 
 .navbar ul li a {
@@ -157,6 +159,9 @@ header .logo h1 a:hover {
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     position: relative;
     overflow: hidden;
+    display: inline-block;
+    background: transparent;
+    z-index: 1;
 }
 
 .navbar ul li a::before {
