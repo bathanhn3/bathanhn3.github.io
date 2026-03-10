@@ -196,7 +196,7 @@
             <div class="logo">
                 <h1><a href="index.html">Financial Insights Blog</a></h1>
             </div>
-            <nav>
+            <nav class="navbar">
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="blog.html">Blog</a></li>
@@ -262,8 +262,12 @@
     <script>
         // Parse YAML frontmatter
         function parseYAML(text) {
-            const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-            if (!match) return { metadata: {}, content: text };
+            // support both LF and CRLF line endings (GitHub Pages may serve files with CRLF)
+            const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
+            if (!match) {
+                // no YAML block found, return empty metadata and original text
+                return { metadata: {}, content: text };
+            }
 
             const metadataStr = match[1];
             const content = match[2];
@@ -297,7 +301,12 @@
 
         // Load and display blog post
         fetch(postPath)
-            .then(response => response.text())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Failed to load ${postPath} (status ${response.status})`);
+                }
+                return response.text();
+            })
             .then(markdown => {
                 const { metadata, content } = parseYAML(markdown);
 
@@ -348,7 +357,37 @@
                 document.getElementById('post-metadata').innerHTML = metadataHTML;
 
                 // Render markdown content
-                document.getElementById('post-content').innerHTML += marked.parse(content);
+                const postContentEl = document.getElementById('post-content');
+                function renderMarkdown(mdText) {
+                    postContentEl.innerHTML += marked.parse(mdText);
+                }
+                // if the fetched content appears to be HTML (contains <html>), it's likely the
+                // server returned a rendered page (GitHub Pages/Jekyll) instead of raw markdown.
+                // attempt to fetch from the raw GitHub URL as a fallback.
+                if (/\<\/?html/i.test(content)) {
+                    console.warn('Fetched content looks like HTML, retrying with raw GitHub URL');
+                    const user = 'bathanhn3';
+                    const repo = 'bathanhn3.github.io';
+                    const branch = 'main';
+                    const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/blog/${post}.md`;
+                    fetch(rawUrl)
+                        .then(resp => {
+                            if (!resp.ok) throw new Error('Raw fetch failed');
+                            return resp.text();
+                        })
+                        .then(rawMd => {
+                            renderMarkdown(rawMd);
+                        })
+                        .catch(err => {
+                            console.error('Raw markdown fallback failed', err);
+                            // show preformatted HTML so the user sees something
+                            postContentEl.innerHTML += `<pre style="white-space:pre-wrap;">${
+                                content.replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                            }</pre>`;
+                        });
+                } else {
+                    renderMarkdown(content);
+                }
 
                 // Update breadcrumb title
                 const currentPost = blogPosts.find(p => p.id === post);
@@ -440,3 +479,5 @@
     </script>
 </body>
 </html>
+
+
