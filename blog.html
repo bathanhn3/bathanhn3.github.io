@@ -8,6 +8,142 @@
     <title>Blog Post</title>
     <link rel="stylesheet" href="css/blog.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        .breadcrumb {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .breadcrumb nav {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .breadcrumb a:hover {
+            color: #764ba2;
+            text-decoration: underline;
+        }
+        
+        .breadcrumb span {
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0 0.5rem;
+        }
+        
+        .breadcrumb-current {
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-sidebar {
+                margin-top: 3rem;
+            }
+        }
+        
+        .blog-sidebar {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .blog-sidebar h3 {
+            color: #667eea;
+            margin-top: 0;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #764ba2;
+            padding-bottom: 0.8rem;
+        }
+        
+        .blog-sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .blog-sidebar li {
+            margin-bottom: 1rem;
+        }
+        
+        .blog-sidebar a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            padding: 0.5rem 0.8rem;
+            border-left: 3px solid transparent;
+            border-radius: 4px;
+        }
+        
+        .blog-sidebar a:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+        
+        .blog-sidebar a.active {
+            background-color: rgba(102, 126, 234, 0.15);
+            border-left-color: #764ba2;
+            color: #764ba2;
+            font-weight: 600;
+        }
+        
+        .blog-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .btn-nav {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-nav:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -24,12 +160,43 @@
         </div>
     </header>
 
+    <!-- Breadcrumb Navigation -->
+    <div class="breadcrumb">
+        <div class="container">
+            <nav>
+                <a href="index.html">Home</a>
+                <span>/</span>
+                <a href="blog.html">Blog</a>
+                <span>/</span>
+                <span class="breadcrumb-current" id="breadcrumb-title">Loading...</span>
+            </nav>
+        </div>
+    </div>
+
     <!-- Blog Post Content -->
     <section class="blog-post">
         <div class="container">
-            <article id="post-content">
-                <!-- Nội dung bài blog sẽ được tải vào đây -->
-            </article>
+            <div class="blog-container">
+                <article id="post-content">
+                    <!-- Nội dung bài blog sẽ được tải vào đây -->
+                </article>
+                
+                <!-- Sidebar with Blog List -->
+                <aside class="blog-sidebar">
+                    <h3>📚 All Posts</h3>
+                    <ul id="blog-list">
+                        <li><a href="blog.html?post=post1">What is Finance and Why is it Important?</a></li>
+                        <li><a href="blog.html?post=post2">Top Investment Mistakes to Avoid</a></li>
+                    </ul>
+                </aside>
+            </div>
+            
+            <!-- Navigation Buttons -->
+            <div class="blog-nav-buttons">
+                <button class="btn-nav" id="prev-btn" onclick="navigatePrev()">← Previous</button>
+                <a href="index.html" class="btn-nav" style="flex: 0.8;">Back to Blog</a>
+                <button class="btn-nav" id="next-btn" onclick="navigateNext()">Next →</button>
+            </div>
         </div>
     </section>
 
@@ -38,18 +205,77 @@
     </footer>
 
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const post = params.get('post');
-        const postPath = `blog/${post}.md`;
+        const blogPosts = [
+            { id: 'post1', title: 'What is Finance and Why is it Important?' },
+            { id: 'post2', title: 'Top Investment Mistakes to Avoid' }
+        ];
 
+        const params = new URLSearchParams(window.location.search);
+        const post = params.get('post') || 'post1';
+        const postPath = `blog/${post}.md`;
+        const currentPostIndex = blogPosts.findIndex(p => p.id === post);
+
+        // Load and display blog post
         fetch(postPath)
             .then(response => response.text())
             .then(markdown => {
                 document.getElementById('post-content').innerHTML = marked(markdown);
+                
+                // Update breadcrumb title
+                const currentPost = blogPosts.find(p => p.id === post);
+                if (currentPost) {
+                    document.getElementById('breadcrumb-title').textContent = currentPost.title;
+                }
+                
+                // Set active link in sidebar
+                const sidebarLinks = document.querySelectorAll('.blog-sidebar a');
+                sidebarLinks.forEach(link => {
+                    if (link.href.includes(`post=${post}`)) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+                
+                // Update navigation buttons
+                updateNavButtons();
             })
             .catch(error => {
                 document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
             });
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            
+            // Disable/enable prev button
+            if (currentPostIndex <= 0) {
+                prevBtn.disabled = true;
+            } else {
+                prevBtn.disabled = false;
+            }
+            
+            // Disable/enable next button
+            if (currentPostIndex >= blogPosts.length - 1) {
+                nextBtn.disabled = true;
+            } else {
+                nextBtn.disabled = false;
+            }
+        }
+
+        function navigatePrev() {
+            if (currentPostIndex > 0) {
+                const prevPost = blogPosts[currentPostIndex - 1].id;
+                window.location.href = `blog.html?post=${prevPost}`;
+            }
+        }
+
+        function navigateNext() {
+            if (currentPostIndex < blogPosts.length - 1) {
+                const nextPost = blogPosts[currentPostIndex + 1].id;
+                window.location.href = `blog.html?post=${nextPost}`;
+            }
+        }
     </script>
 </body>
 </html>
