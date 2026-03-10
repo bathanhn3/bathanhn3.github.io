@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Financial Insights - Your Knowledge Hub for Financial Education">
+    <meta name="description" content="Financial Insights - Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Financial Insights - Knowledge Blog</title>
+    <meta name="author" content="Financial Insights">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Financial Insights Blog">
+    <meta property="og:title" content="Financial Insights - Knowledge Hub for Personal Finance">
+    <meta property="og:description" content="Discover practical tips and insights about personal finance, investing, and wealth building.">
+    <meta property="og:url" content="https://bathanhn3.github.io/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Financial Insights - Personal Finance Blog">
+    <meta name="twitter:description" content="Discover practical tips and insights about personal finance, investing, and wealth building.">
+    <title>Financial Insights - Knowledge Blog | Personal Finance & Investing Tips</title>
+    <link rel="canonical" href="https://bathanhn3.github.io/">
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -93,5 +104,39 @@
     <footer>
         <p>&copy; 2024 Financial Insights. All rights reserved. | Empowering financial knowledge, one article at a time.</p>
     </footer>
+
+    <script>
+        // Add JSON-LD structured data for homepage
+        const homePageSchema = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Financial Insights",
+            "description": "Your Knowledge Hub for Financial Education",
+            "url": "https://bathanhn3.github.io/",
+            "sameAs": [
+                "https://www.facebook.com/financialinsights",
+                "https://www.twitter.com/financialinsights"
+            ]
+        };
+
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.innerHTML = JSON.stringify(homePageSchema);
+        document.head.appendChild(script);
+
+        // Blog collection schema
+        const blogCollectionSchema = {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Financial Insights Blog",
+            "description": "A collection of articles on personal finance, investing, and wealth building",
+            "url": "https://bathanhn3.github.io/blog.html"
+        };
+
+        const blogScript = document.createElement('script');
+        blogScript.type = 'application/ld+json';
+        blogScript.innerHTML = JSON.stringify(blogCollectionSchema);
+        document.head.appendChild(blogScript);
+    </script>
 </body>
 </html>

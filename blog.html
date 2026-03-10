@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Financial Blog Post">
+    <meta name="description" content="Financial Blog - Explore insightful articles on personal finance, investing, and financial management.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Blog Post</title>
+    <meta name="author" content="Financial Insights">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="Financial Insights Blog">
+    <title id="page-title">Blog Post - Financial Insights</title>
+    <link rel="canonical" id="canonical-link" href="https://bathanhn3.github.io/blog.html">
+    <meta property="og:url" id="og-url" content="https://bathanhn3.github.io/blog.html">
+    <meta property="og:title" id="og-title" content="Financial Blog">
+    <meta property="og:description" id="og-description" content="Financial Blog - Explore insightful articles on personal finance">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" id="twitter-title" content="Financial Blog">
+    <meta name="twitter:description" id="twitter-description" content="Financial Blog">
     <link rel="stylesheet" href="css/blog.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -143,6 +154,40 @@
             cursor: not-allowed;
             transform: none;
         }
+
+        .post-metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 2rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+
+        .post-metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #888;
+            font-size: 0.95rem;
+        }
+
+        .post-category-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .post-title {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -178,7 +223,9 @@
         <div class="container">
             <div class="blog-container">
                 <article id="post-content">
-                    <!-- Nội dung bài blog sẽ được tải vào đây -->
+                    <!-- Post metadata will be inserted here -->
+                    <div id="post-metadata" class="post-metadata"></div>
+                    <!-- Post content will be inserted here -->
                 </article>
                 
                 <!-- Sidebar with Blog List -->
@@ -205,9 +252,34 @@
     </footer>
 
     <script>
+        // Parse YAML frontmatter
+        function parseYAML(text) {
+            const match = text.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
+            if (!match) return { metadata: {}, content: text };
+
+            const metadataStr = match[1];
+            const content = match[2];
+            const metadata = {};
+
+            metadataStr.split('\n').forEach(line => {
+                const [key, ...valueParts] = line.split(':');
+                if (key && valueParts.length > 0) {
+                    let value = valueParts.join(':').trim();
+                    // Remove quotes if present
+                    if ((value.startsWith('"') && value.endsWith('"')) || 
+                        (value.startsWith("'") && value.endsWith("'"))) {
+                        value = value.slice(1, -1);
+                    }
+                    metadata[key.trim()] = value;
+                }
+            });
+
+            return { metadata, content };
+        }
+
         const blogPosts = [
-            { id: 'post1', title: 'What is Finance and Why is it Important?' },
-            { id: 'post2', title: 'Top Investment Mistakes to Avoid' }
+            { id: 'post1', title: 'What is Finance and Why is it Important?', slug: 'what-is-finance-why-important' },
+            { id: 'post2', title: 'Top Investment Mistakes to Avoid', slug: 'investment-mistakes-avoid' }
         ];
 
         const params = new URLSearchParams(window.location.search);
@@ -219,14 +291,63 @@
         fetch(postPath)
             .then(response => response.text())
             .then(markdown => {
-                document.getElementById('post-content').innerHTML = marked(markdown);
-                
+                const { metadata, content } = parseYAML(markdown);
+
+                // Update page title and meta tags
+                const pageTitle = metadata.title || 'Blog Post';
+                const slug = metadata.slug || post;
+                const canonicalUrl = `https://bathanhn3.github.io/blog.html?post=${post}`;
+
+                document.title = `${pageTitle} - Financial Insights`;
+                document.getElementById('page-title').textContent = pageTitle;
+                document.getElementById('canonical-link').href = canonicalUrl;
+                document.getElementById('og-url').content = canonicalUrl;
+                document.getElementById('og-title').content = pageTitle;
+                document.getElementById('og-description').content = metadata.description || 'Financial blog post';
+                document.getElementById('twitter-title').content = pageTitle;
+                document.getElementById('twitter-description').content = metadata.description || 'Financial blog post';
+
+                // Update meta description
+                document.querySelector('meta[name="description"]').content = metadata.description || 'Financial blog post';
+
+                // Update meta keywords if present
+                if (metadata.keywords) {
+                    let keywordsMeta = document.querySelector('meta[name="keywords"]');
+                    if (!keywordsMeta) {
+                        keywordsMeta = document.createElement('meta');
+                        keywordsMeta.name = 'keywords';
+                        document.head.appendChild(keywordsMeta);
+                    }
+                    keywordsMeta.content = metadata.keywords;
+                }
+
+                // Build metadata HTML
+                const metadataHTML = `
+                    <div class="post-category-badge">${metadata.category || 'Uncategorized'}</div>
+                    <div class="post-metadata-item">
+                        <span>📅</span>
+                        <span>${metadata.date || 'No date'}</span>
+                    </div>
+                    <div class="post-metadata-item">
+                        <span>👤</span>
+                        <span>${metadata.author || 'Anonymous'}</span>
+                    </div>
+                    <div class="post-metadata-item">
+                        <span>⏱️</span>
+                        <span>${metadata.readTime || 'Unknown'}</span>
+                    </div>
+                `;
+                document.getElementById('post-metadata').innerHTML = metadataHTML;
+
+                // Render markdown content
+                document.getElementById('post-content').innerHTML += marked.parse(content);
+
                 // Update breadcrumb title
                 const currentPost = blogPosts.find(p => p.id === post);
                 if (currentPost) {
                     document.getElementById('breadcrumb-title').textContent = currentPost.title;
                 }
-                
+
                 // Set active link in sidebar
                 const sidebarLinks = document.querySelectorAll('.blog-sidebar a');
                 sidebarLinks.forEach(link => {
@@ -236,26 +357,28 @@
                         link.classList.remove('active');
                     }
                 });
-                
+
                 // Update navigation buttons
                 updateNavButtons();
+
+                // Add JSON-LD structured data
+                addStructuredData(metadata, canonicalUrl);
             })
             .catch(error => {
+                console.error('Error loading post:', error);
                 document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
             });
 
         function updateNavButtons() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-            
-            // Disable/enable prev button
+
             if (currentPostIndex <= 0) {
                 prevBtn.disabled = true;
             } else {
                 prevBtn.disabled = false;
             }
-            
-            // Disable/enable next button
+
             if (currentPostIndex >= blogPosts.length - 1) {
                 nextBtn.disabled = true;
             } else {
@@ -275,6 +398,36 @@
                 const nextPost = blogPosts[currentPostIndex + 1].id;
                 window.location.href = `blog.html?post=${nextPost}`;
             }
+        }
+
+        function addStructuredData(metadata, canonicalUrl) {
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "BlogPosting",
+                "headline": metadata.title,
+                "description": metadata.description,
+                "author": {
+                    "@type": "Person",
+                    "name": metadata.author || "Financial Insights"
+                },
+                "datePublished": metadata.date,
+                "dateModified": metadata.date,
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "Financial Insights",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": "https://bathanhn3.github.io/images/logo.png"
+                    }
+                },
+                "url": canonicalUrl,
+                "keywords": metadata.keywords
+            };
+
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.innerHTML = JSON.stringify(structuredData);
+            document.head.appendChild(script);
         }
     </script>
 </body>
