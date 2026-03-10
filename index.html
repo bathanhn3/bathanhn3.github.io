@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Financial Blog">
+    <meta name="description" content="Financial Insights - Your Knowledge Hub for Financial Education">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Financial Blog</title>
+    <title>Financial Insights - Knowledge Blog</title>
     <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
@@ -13,14 +13,14 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1><a href="#">Financial Insights</a></h1>
+                <h1><a href="index.html">💰 Financial Insights</a></h1>
             </div>
             <!-- Navbar -->
             <nav class="navbar">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#blog-section">Blog</a></li>
+                    <li><a href="#about-section">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </nav>
@@ -31,24 +31,67 @@
     <section class="hero">
         <div class="container">
             <h2>Master Your Financial Future</h2>
-            <p>Discover tips, insights, and advice to take control of your personal finances.</p>
-            <a href="blog.html" class="btn-primary">Visit the Blog</a>
+            <p>Discover practical tips, insights, and knowledge to take control of your personal finances and build wealth.</p>
+            <a href="#blog-section" class="btn-primary">Explore Our Blog</a>
+        </div>
+    </section>
+
+    <!-- Featured Content Section -->
+    <section class="featured-section">
+        <div class="container">
+            <h2>📌 Featured Read</h2>
+            <div class="featured-post">
+                <h3>What is Finance and Why is it Important?</h3>
+                <p>Everything you need to know about financial management, why it matters, and how it impacts your daily life and long-term goals.</p>
+                <a href="blog.html?post=post1">Read Full Article →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about-section">
+        <div class="container">
+            <h2>About This Blog</h2>
+            <p>Financial Insights is dedicated to providing accessible, practical knowledge about personal finance. Whether you're just starting your financial journey or looking to optimize your strategy, we break down complex concepts into actionable insights.</p>
+            <p>Our mission is to empower individuals with the knowledge and tools necessary to make informed financial decisions and achieve their goals.</p>
         </div>
     </section>
 
     <!-- Blog Listing Section -->
-    <section class="blog-list">
+    <section class="blog-list" id="blog-section">
         <div class="container">
-            <h2>Latest Blog Posts</h2>
+            <h2>📚 Latest Articles</h2>
             <ul>
-                <li><a href="blog.html?post=post1">What is Finance and Why is it Important?</a></li>
-                <li><a href="blog.html?post=post2">Top Investment Mistakes to Avoid</a></li>
+                <li>
+                    <div class="blog-post-card">
+                        <span class="post-category">Finance 101</span>
+                        <div class="post-meta">
+                            <span>📅 March 2024</span>
+                            <span>⏱️ 8 min read</span>
+                        </div>
+                        <h3>What is Finance and Why is it Important?</h3>
+                        <p>Learn the fundamentals of finance and discover why financial literacy is crucial for building a secure future.</p>
+                        <a href="blog.html?post=post1">Read Article →</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="blog-post-card">
+                        <span class="post-category">Investment</span>
+                        <div class="post-meta">
+                            <span>📅 February 2024</span>
+                            <span>⏱️ 6 min read</span>
+                        </div>
+                        <h3>Top Investment Mistakes to Avoid</h3>
+                        <p>Explore common investment pitfalls and gain actionable insights to make smarter financial decisions.</p>
+                        <a href="blog.html?post=post2">Read Article →</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2024 Financial Insights. All rights reserved.</p>
+        <p>&copy; 2024 Financial Insights. All rights reserved. | Empowering financial knowledge, one article at a time.</p>
     </footer>
 </body>
 </html>
