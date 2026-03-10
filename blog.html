@@ -300,10 +300,14 @@
         const currentPostIndex = blogPosts.findIndex(p => p.id === post);
 
         // Load and display blog post
-        fetch(postPath)
+        const user = 'bathanhn3';
+        const repo = 'bathanhn3.github.io';
+        const branch = 'main';
+        const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/blog/${post}.md`;
+        fetch(rawUrl)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error(`Failed to load ${postPath} (status ${response.status})`);
+                    throw new Error(`Failed to load ${rawUrl} (status ${response.status})`);
                 }
                 return response.text();
             })
