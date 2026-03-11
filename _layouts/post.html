@@ -1,0 +1,81 @@
+---
+layout: default
+---
+<div class="breadcrumb">
+  <div class="container">
+    <nav>
+      <a href="{{ '/' | relative_url }}">Home</a>
+      <span>/</span>
+      <a href="{{ '/blog/' | relative_url }}">Blog</a>
+      <span>/</span>
+      <span class="breadcrumb-current">{{ page.title }}</span>
+    </nav>
+  </div>
+</div>
+
+<section class="blog-post">
+  <div class="container">
+    <div class="blog-container">
+      <article id="post-content">
+        <h1 class="post-title">{{ page.title }}</h1>
+        <div class="post-metadata">
+          <div class="post-category-badge">{{ page.category | default: "Uncategorized" }}</div>
+          <div class="post-metadata-item">
+            <span>Published:</span><span>{{ page.date | date: "%B %-d, %Y" }}</span>
+          </div>
+          <div class="post-metadata-item">
+            <span>Author:</span><span>{{ page.author | default: site.author }}</span>
+          </div>
+          <div class="post-metadata-item">
+            <span>Read time:</span><span>{{ page.readTime | default: "5 min read" }}</span>
+          </div>
+        </div>
+        {{ content }}
+      </article>
+
+      <aside class="blog-sidebar">
+        <h3>All Posts</h3>
+        <ul id="blog-list">
+          {% for post in site.posts %}
+          <li><a href="{{ post.url | relative_url }}" {% if post.url == page.url %}class="active"{% endif %}>{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </aside>
+    </div>
+
+    <div class="blog-nav-buttons">
+      {% if page.next %}
+      <a class="btn-nav" href="{{ page.next.url | relative_url }}">&larr; Newer</a>
+      {% else %}
+      <span class="btn-nav" style="opacity: 0.5; cursor: not-allowed;">&larr; Newer</span>
+      {% endif %}
+      <a href="{{ '/blog/' | relative_url }}" class="btn-nav" style="flex: 0.8;">Back to Blog</a>
+      {% if page.previous %}
+      <a class="btn-nav" href="{{ page.previous.url | relative_url }}">Older &rarr;</a>
+      {% else %}
+      <span class="btn-nav" style="opacity: 0.5; cursor: not-allowed;">Older &rarr;</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ page.title | jsonify }},
+  "description": {{ page.description | default: site.description | jsonify }},
+  "author": {
+    "@type": "Person",
+    "name": {{ page.author | default: site.author | jsonify }}
+  },
+  "datePublished": "{{ page.date | date_to_xmlschema }}",
+  "dateModified": "{{ page.date | date_to_xmlschema }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ site.title | jsonify }}
+  },
+  "url": "{{ page.url | absolute_url }}",
+  "keywords": {{ page.keywords | default: '' | jsonify }}
+}
+</script>

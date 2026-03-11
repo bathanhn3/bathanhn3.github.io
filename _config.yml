@@ -1,0 +1,40 @@
+title: Financial Insights
+description: Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.
+url: "https://bathanhn3.github.io"
+baseurl: ""
+lang: en
+timezone: Asia/Bangkok
+author: Financial Insights
+
+markdown: kramdown
+highlighter: rouge
+permalink: /blog/:title/
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude:
+  - .continue
+  - vendor
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+  - push.sh
+  - README.md
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      custom_css:
+        - /css/blog.css
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: default
+      custom_css:
+        - /css/home.css

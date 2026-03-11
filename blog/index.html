@@ -1,0 +1,34 @@
+---
+layout: default
+title: Blog - Financial Insights
+description: Explore insightful articles on personal finance, investing, and financial management.
+permalink: /blog/
+---
+<section class="hero">
+  <div class="container">
+    <h2>Financial Insights Blog</h2>
+    <p>Explore practical articles on personal finance, investing, and wealth building.</p>
+  </div>
+</section>
+
+<section class="blog-list">
+  <div class="container">
+    <h2>All Articles</h2>
+    <ul>
+      {% for post in site.posts %}
+      <li>
+        <div class="blog-post-card">
+          <span class="post-category">{{ post.category | default: "General" }}</span>
+          <div class="post-meta">
+            <span>{{ post.date | date: "%B %-d, %Y" }}</span>
+            <span>{{ post.readTime | default: "5 min read" }}</span>
+          </div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <a href="{{ post.url | relative_url }}">Read Article &rarr;</a>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

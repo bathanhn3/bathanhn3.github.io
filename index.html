@@ -1,149 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Financial Insights - Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="author" content="Financial Insights">
-    <meta name="robots" content="index, follow">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Financial Insights Blog">
-    <meta property="og:title" content="Financial Insights - Knowledge Hub for Personal Finance">
-    <meta property="og:description" content="Discover practical tips and insights about personal finance, investing, and wealth building.">
-    <meta property="og:url" content="https://bathanhn3.github.io/">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Financial Insights - Personal Finance Blog">
-    <meta name="twitter:description" content="Discover practical tips and insights about personal finance, investing, and wealth building.">
-    <title>Financial Insights - Knowledge Blog | Personal Finance & Investing Tips</title>
-    <link rel="canonical" href="https://bathanhn3.github.io/">
-    <link rel="stylesheet" href="css/home.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="logo">
-                <h1><a href="/">💰 Financial Insights</a></h1>
-            </div>
-            <!-- Navbar -->
-            <nav class="navbar">
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/blog.html">Blog</a></li>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-            </nav>
+---
+layout: default
+title: Financial Insights - Knowledge Blog | Personal Finance & Investing Tips
+description: Financial Insights - Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.
+permalink: /
+---
+{% assign featured_post = site.posts | where_exp: "post", "post.featured == true" | first %}
+
+<section class="hero">
+  <div class="container">
+    <h2>Master Your Financial Future</h2>
+    <p>Discover practical tips, insights, and knowledge to take control of your personal finances and build wealth.</p>
+    <a href="#blog-section" class="btn-primary">Explore Our Blog</a>
+  </div>
+</section>
+
+<section class="featured-section">
+  <div class="container">
+    <h2>Featured Read</h2>
+    {% if featured_post %}
+    <div class="featured-post">
+      <h3>{{ featured_post.title }}</h3>
+      <p>{{ featured_post.description }}</p>
+      <a href="{{ featured_post.url | relative_url }}">Read Full Article &rarr;</a>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<section class="about-section" id="about-section">
+  <div class="container">
+    <h2>About This Blog</h2>
+    <p>Financial Insights is dedicated to providing accessible, practical knowledge about personal finance. Whether you're just starting your financial journey or looking to optimize your strategy, we break down complex concepts into actionable insights.</p>
+    <p>Our mission is to empower individuals with the knowledge and tools necessary to make informed financial decisions and achieve their goals.</p>
+  </div>
+</section>
+
+<section class="blog-list" id="blog-section">
+  <div class="container">
+    <h2>Latest Articles</h2>
+    <ul>
+      {% for post in site.posts limit: 6 %}
+      <li>
+        <div class="blog-post-card">
+          <span class="post-category">{{ post.category | default: "General" }}</span>
+          <div class="post-meta">
+            <span>{{ post.date | date: "%B %Y" }}</span>
+            <span>{{ post.readTime | default: "5 min read" }}</span>
+          </div>
+          <h3>{{ post.title }}</h3>
+          <p>{{ post.description }}</p>
+          <a href="{{ post.url | relative_url }}">Read Article &rarr;</a>
         </div>
-    </header>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h2>Master Your Financial Future</h2>
-            <p>Discover practical tips, insights, and knowledge to take control of your personal finances and build wealth.</p>
-            <a href="#blog-section" class="btn-primary">Explore Our Blog</a>
-        </div>
-    </section>
-
-    <!-- Featured Content Section -->
-    <section class="featured-section">
-        <div class="container">
-            <h2>📌 Featured Read</h2>
-            <div class="featured-post">
-                <h3>What is Finance and Why is it Important?</h3>
-                <p>Everything you need to know about financial management, why it matters, and how it impacts your daily life and long-term goals.</p>
-                <a href="/blog.html?slug=what-is-finance-why-important">Read Full Article →</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about-section" id="about-section">
-        <div class="container">
-            <h2>About This Blog</h2>
-            <p>Financial Insights is dedicated to providing accessible, practical knowledge about personal finance. Whether you're just starting your financial journey or looking to optimize your strategy, we break down complex concepts into actionable insights.</p>
-            <p>Our mission is to empower individuals with the knowledge and tools necessary to make informed financial decisions and achieve their goals.</p>
-        </div>
-    </section>
-
-    <!-- Blog Listing Section -->
-    <section class="blog-list" id="blog-section">
-        <div class="container">
-            <h2>📚 Latest Articles</h2>
-            <ul>
-                <li>
-                    <div class="blog-post-card">
-                        <span class="post-category">Finance 101</span>
-                        <div class="post-meta">
-                            <span>📅 March 2024</span>
-                            <span>⏱️ 8 min read</span>
-                        </div>
-                        <h3>What is Finance and Why is it Important?</h3>
-                        <p>Learn the fundamentals of finance and discover why financial literacy is crucial for building a secure future.</p>
-                        <a href="/blog.html?slug=what-is-finance-why-important">Read Article →</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="blog-post-card">
-                        <span class="post-category">Investment</span>
-                        <div class="post-meta">
-                            <span>📅 February 2024</span>
-                            <span>⏱️ 6 min read</span>
-                        </div>
-                        <h3>Top Investment Mistakes to Avoid</h3>
-                        <p>Explore common investment pitfalls and gain actionable insights to make smarter financial decisions.</p>
-                        <a href="/blog.html?slug=investment-mistakes-avoid">Read Article →</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 Financial Insights. All rights reserved. | Empowering financial knowledge, one article at a time.</p>
-        <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            <a href="/" style="color: #667eea; text-decoration: none;">Home</a> | 
-            <a href="/blog.html" style="color: #667eea; text-decoration: none;">Blog</a> | 
-            <a href="/about.html" style="color: #667eea; text-decoration: none;">About</a> | 
-            <a href="/contact.html" style="color: #667eea; text-decoration: none;">Contact</a>
-        </p>
-    </footer>
-
-    <script>
-        // Add JSON-LD structured data for homepage
-        const homePageSchema = {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Financial Insights",
-            "description": "Your Knowledge Hub for Financial Education",
-            "url": "https://bathanhn3.github.io/",
-            "sameAs": [
-                "https://www.facebook.com/financialinsights",
-                "https://www.twitter.com/financialinsights"
-            ]
-        };
-
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.innerHTML = JSON.stringify(homePageSchema);
-        document.head.appendChild(script);
-
-        // Blog collection schema
-        const blogCollectionSchema = {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            "name": "Financial Insights Blog",
-            "description": "A collection of articles on personal finance, investing, and wealth building",
-            "url": "https://bathanhn3.github.io/blog.html"
-        };
-
-        const blogScript = document.createElement('script');
-        blogScript.type = 'application/ld+json';
-        blogScript.innerHTML = JSON.stringify(blogCollectionSchema);
-        document.head.appendChild(blogScript);
-    </script>
-</body>
-</html>
-
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ site.title }}",
+  "description": {{ site.description | jsonify }},
+  "url": "{{ '/' | absolute_url }}"
+}
+</script>
