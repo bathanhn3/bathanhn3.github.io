@@ -194,14 +194,14 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1><a href="index.html">Financial Insights Blog</a></h1>
+                <h1><a href="/">Financial Insights Blog</a></h1>
             </div>
             <nav class="navbar">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/blog.html">Blog</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -211,9 +211,9 @@
     <div class="breadcrumb">
         <div class="container">
             <nav>
-                <a href="index.html">Home</a>
+                <a href="/">Home</a>
                 <span>/</span>
-                <a href="blog.html">Blog</a>
+                <a href="/blog.html">Blog</a>
                 <span>/</span>
                 <span class="breadcrumb-current" id="breadcrumb-title">Loading...</span>
             </nav>
@@ -234,8 +234,8 @@
                 <aside class="blog-sidebar">
                     <h3>📚 All Posts</h3>
                     <ul id="blog-list">
-                        <li><a href="blog.html?slug=what-is-finance-why-important">What is Finance and Why is it Important?</a></li>
-                        <li><a href="blog.html?slug=investment-mistakes-avoid">Top Investment Mistakes to Avoid</a></li>
+                        <li><a href="/blog.html?slug=what-is-finance-why-important">What is Finance and Why is it Important?</a></li>
+                        <li><a href="/blog.html?slug=investment-mistakes-avoid">Top Investment Mistakes to Avoid</a></li>
                     </ul>
                 </aside>
             </div>
@@ -243,7 +243,7 @@
             <!-- Navigation Buttons -->
             <div class="blog-nav-buttons">
                 <button class="btn-nav" id="prev-btn" onclick="navigatePrev()">← Previous</button>
-                <a href="index.html" class="btn-nav" style="flex: 0.8;">Back to Blog</a>
+                <a href="/#blog-section" class="btn-nav" style="flex: 0.8;">Back to Blog</a>
                 <button class="btn-nav" id="next-btn" onclick="navigateNext()">Next →</button>
             </div>
         </div>
@@ -252,10 +252,10 @@
     <footer>
         <p>&copy; 2024 Financial Insights. All rights reserved.</p>
         <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-            <a href="index.html" style="color: #667eea; text-decoration: none;">Home</a> | 
-            <a href="blog.html" style="color: #667eea; text-decoration: none;">Blog</a> | 
-            <a href="about.html" style="color: #667eea; text-decoration: none;">About</a> | 
-            <a href="contact.html" style="color: #667eea; text-decoration: none;">Contact</a>
+            <a href="/" style="color: #667eea; text-decoration: none;">Home</a> | 
+            <a href="/blog.html" style="color: #667eea; text-decoration: none;">Blog</a> | 
+            <a href="/about.html" style="color: #667eea; text-decoration: none;">About</a> | 
+            <a href="/contact.html" style="color: #667eea; text-decoration: none;">Contact</a>
         </p>
     </footer>
 
@@ -427,13 +427,13 @@
         function navigatePrev(currentIndex, blogPosts) {
             if (currentIndex > 0) {
                 const slug = blogPosts[currentIndex - 1].slug;
-                window.location.href = `blog.html?slug=${encodeURIComponent(slug)}`;
+                window.location.href = `/blog.html?slug=${encodeURIComponent(slug)}`;
             }
         }
         function navigateNext(currentIndex, blogPosts) {
             if (currentIndex < blogPosts.length - 1) {
                 const slug = blogPosts[currentIndex + 1].slug;
-                window.location.href = `blog.html?slug=${encodeURIComponent(slug)}`;
+                window.location.href = `/blog.html?slug=${encodeURIComponent(slug)}`;
             }
         }
 
@@ -468,5 +468,6 @@
     </script>
 </body>
 </html>
+
 
 
