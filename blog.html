@@ -234,8 +234,8 @@
                 <aside class="blog-sidebar">
                     <h3>📚 All Posts</h3>
                     <ul id="blog-list">
-                        <li><a href="blog.html?post=post1">What is Finance and Why is it Important?</a></li>
-                        <li><a href="blog.html?post=post2">Top Investment Mistakes to Avoid</a></li>
+                        <li><a href="blog.html?slug=what-is-finance-why-important">What is Finance and Why is it Important?</a></li>
+                        <li><a href="blog.html?slug=investment-mistakes-avoid">Top Investment Mistakes to Avoid</a></li>
                     </ul>
                 </aside>
             </div>
@@ -260,64 +260,109 @@
     </footer>
 
     <script>
-        // Parse YAML frontmatter
+        // Parse YAML frontmatter (supports LF & CRLF)
         function parseYAML(text) {
-            // support both LF and CRLF line endings (GitHub Pages may serve files with CRLF)
             const match = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/);
-            if (!match) {
-                // no YAML block found, return empty metadata and original text
-                return { metadata: {}, content: text };
-            }
-
-            const metadataStr = match[1];
-            const content = match[2];
+            if (!match) return { metadata: {}, content: text };
             const metadata = {};
-
-            metadataStr.split('\n').forEach(line => {
-                const [key, ...valueParts] = line.split(':');
-                if (key && valueParts.length > 0) {
-                    let value = valueParts.join(':').trim();
-                    // Remove quotes if present
-                    if ((value.startsWith('"') && value.endsWith('"')) || 
+            match[1].split('\n').forEach(line => {
+                const [key, ...parts] = line.split(':');
+                if (key && parts.length) {
+                    let value = parts.join(':').trim();
+                    if ((value.startsWith('"') && value.endsWith('"')) ||
                         (value.startsWith("'") && value.endsWith("'"))) {
                         value = value.slice(1, -1);
                     }
                     metadata[key.trim()] = value;
                 }
             });
-
-            return { metadata, content };
+            return { metadata, content: match[2] };
         }
 
-        const blogPosts = [
-            { id: 'post1', title: 'What is Finance and Why is it Important?', slug: 'what-is-finance-why-important' },
-            { id: 'post2', title: 'Top Investment Mistakes to Avoid', slug: 'investment-mistakes-avoid' }
-        ];
-
-        const params = new URLSearchParams(window.location.search);
-        const post = params.get('post') || 'post1';
-        const postPath = `blog/${post}.md`;
-        const currentPostIndex = blogPosts.findIndex(p => p.id === post);
-
-        // Load and display blog post
-        const user = 'bathanhn3';
-        const repo = 'bathanhn3.github.io';
-        const branch = 'main';
-        const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/blog/${post}.md`;
-        fetch(rawUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`Failed to load ${rawUrl} (status ${response.status})`);
+        // fetch list of markdown posts from GitHub and read their frontmatter
+        async function fetchBlogPosts() {
+            const user = 'bathanhn3';
+            const repo = 'bathanhn3.github.io';
+            const branch = 'main';
+            const apiUrl = `https://api.github.com/repos/${user}/${repo}/contents/blog?ref=${branch}`;
+            try {
+                const res = await fetch(apiUrl);
+                if (!res.ok) throw new Error(`GitHub API returned ${res.status}`);
+                const files = await res.json();
+                const posts = [];
+                for (const file of files) {
+                    if (file.name.endsWith('.md')) {
+                        const id = file.name.replace(/\.md$/, '');
+                        let slug = id;
+                        let title = id;
+                        try {
+                            const md = await fetch(file.download_url).then(r => r.text());
+                            const { metadata } = parseYAML(md);
+                            slug = metadata.slug || slug;
+                            title = metadata.title || title;
+                        } catch (e) {
+                            console.warn(`metadata load failed for ${file.name}`, e);
+                        }
+                        posts.push({ id, title, slug });
+                    }
                 }
-                return response.text();
-            })
-            .then(markdown => {
+                return posts;
+            } catch (err) {
+                console.error('Failed to fetch posts list:', err);
+                return [
+                    { id: 'post1', title: 'What is Finance and Why is it Important?', slug: 'what-is-finance-why-important' },
+                    { id: 'post2', title: 'Top Investment Mistakes to Avoid', slug: 'investment-mistakes-avoid' }
+                ];
+            }
+        }
+
+        function getCurrentPostIdentifier(blogPosts) {
+            const params = new URLSearchParams(window.location.search);
+            let post = params.get('post');
+            const slug = params.get('slug');
+            if (slug) {
+                const match = blogPosts.find(p => p.slug === slug);
+                if (match) post = match.id;
+            }
+            if (!post) {
+                const segments = window.location.pathname.split('/').filter(s => s && s !== 'blog.html' && s !== 'blog');
+                if (segments.length) {
+                    const maybe = segments[segments.length - 1].replace(/\.html$/, '');
+                    const m = blogPosts.find(p => p.slug === maybe);
+                    if (m) post = m.id;
+                }
+            }
+            return post || (blogPosts.length ? blogPosts[0].id : null);
+        }
+
+        function buildSidebar(blogPosts, currentId) {
+            const ul = document.getElementById('blog-list');
+            ul.innerHTML = '';
+            blogPosts.forEach(p => {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `blog.html?slug=${encodeURIComponent(p.slug)}`;
+                a.textContent = p.title;
+                if (p.id === currentId) a.classList.add('active');
+                li.appendChild(a);
+                ul.appendChild(li);
+            });
+        }
+
+        async function loadAndRenderPost(postId, blogPosts, currentIndex) {
+            const user = 'bathanhn3';
+            const repo = 'bathanhn3.github.io';
+            const branch = 'main';
+            const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/blog/${postId}.md`;
+            try {
+                const resp = await fetch(rawUrl);
+                if (!resp.ok) throw new Error(`Failed to load ${rawUrl} (status ${resp.status})`);
+                const markdown = await resp.text();
                 const { metadata, content } = parseYAML(markdown);
 
-                // Update page title and meta tags
                 const pageTitle = metadata.title || 'Blog Post';
-                const slug = metadata.slug || post;
-                const canonicalUrl = `https://bathanhn3.github.io/blog.html?post=${post}`;
+                const slug = metadata.slug || postId;
+                const canonicalUrl = `https://bathanhn3.github.io/blog.html?slug=${slug}`;
 
                 document.title = `${pageTitle} - Financial Insights`;
                 document.getElementById('page-title').textContent = pageTitle;
@@ -327,159 +372,99 @@
                 document.getElementById('og-description').content = metadata.description || 'Financial blog post';
                 document.getElementById('twitter-title').content = pageTitle;
                 document.getElementById('twitter-description').content = metadata.description || 'Financial blog post';
-
-                // Update meta description
                 document.querySelector('meta[name="description"]').content = metadata.description || 'Financial blog post';
-
-                // Update meta keywords if present
                 if (metadata.keywords) {
-                    let keywordsMeta = document.querySelector('meta[name="keywords"]');
-                    if (!keywordsMeta) {
-                        keywordsMeta = document.createElement('meta');
-                        keywordsMeta.name = 'keywords';
-                        document.head.appendChild(keywordsMeta);
-                    }
-                    keywordsMeta.content = metadata.keywords;
+                    let km = document.querySelector('meta[name="keywords"]');
+                    if (!km) { km = document.createElement('meta'); km.name = 'keywords'; document.head.appendChild(km); }
+                    km.content = metadata.keywords;
                 }
 
-                // Build metadata HTML
-                const metadataHTML = `
+                document.getElementById('post-metadata').innerHTML = `
                     <div class="post-category-badge">${metadata.category || 'Uncategorized'}</div>
                     <div class="post-metadata-item">
-                        <span>📅</span>
-                        <span>${metadata.date || 'No date'}</span>
+                        <span>📅</span><span>${metadata.date || 'No date'}</span>
                     </div>
                     <div class="post-metadata-item">
-                        <span>👤</span>
-                        <span>${metadata.author || 'Anonymous'}</span>
+                        <span>👤</span><span>${metadata.author || 'Anonymous'}</span>
                     </div>
                     <div class="post-metadata-item">
-                        <span>⏱️</span>
-                        <span>${metadata.readTime || 'Unknown'}</span>
+                        <span>⏱️</span><span>${metadata.readTime || 'Unknown'}</span>
                     </div>
                 `;
-                document.getElementById('post-metadata').innerHTML = metadataHTML;
 
-                // Render markdown content
                 const postContentEl = document.getElementById('post-content');
-                function renderMarkdown(mdText) {
-                    postContentEl.innerHTML += marked.parse(mdText);
-                }
-                // if the fetched content appears to be HTML (contains <html>), it's likely the
-                // server returned a rendered page (GitHub Pages/Jekyll) instead of raw markdown.
-                // attempt to fetch from the raw GitHub URL as a fallback.
+                function renderMarkdown(mdText) { postContentEl.innerHTML += marked.parse(mdText); }
                 if (/\<\/?html/i.test(content)) {
-                    console.warn('Fetched content looks like HTML, retrying with raw GitHub URL');
-                    const user = 'bathanhn3';
-                    const repo = 'bathanhn3.github.io';
-                    const branch = 'main';
-                    const rawUrl = `https://raw.githubusercontent.com/${user}/${repo}/${branch}/blog/${post}.md`;
-                    fetch(rawUrl)
-                        .then(resp => {
-                            if (!resp.ok) throw new Error('Raw fetch failed');
-                            return resp.text();
-                        })
-                        .then(rawMd => {
-                            renderMarkdown(rawMd);
-                        })
-                        .catch(err => {
-                            console.error('Raw markdown fallback failed', err);
-                            // show preformatted HTML so the user sees something
-                            postContentEl.innerHTML += `<pre style="white-space:pre-wrap;">${
-                                content.replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                            }</pre>`;
-                        });
+                    console.warn('Fetched content looks like HTML, retrying');
+                    const raw = await fetch(rawUrl).then(r=>r.text());
+                    renderMarkdown(raw);
                 } else {
                     renderMarkdown(content);
                 }
 
-                // Update breadcrumb title
-                const currentPost = blogPosts.find(p => p.id === post);
-                if (currentPost) {
-                    document.getElementById('breadcrumb-title').textContent = currentPost.title;
-                }
+                const currentPost = blogPosts.find(p => p.id === postId);
+                if (currentPost) document.getElementById('breadcrumb-title').textContent = currentPost.title;
 
-                // Set active link in sidebar
-                const sidebarLinks = document.querySelectorAll('.blog-sidebar a');
-                sidebarLinks.forEach(link => {
-                    if (link.href.includes(`post=${post}`)) {
-                        link.classList.add('active');
-                    } else {
-                        link.classList.remove('active');
-                    }
-                });
-
-                // Update navigation buttons
-                updateNavButtons();
-
-                // Add JSON-LD structured data
+                updateNavButtons(currentIndex, blogPosts);
                 addStructuredData(metadata, canonicalUrl);
-            })
-            .catch(error => {
-                console.error('Error loading post:', error);
-                document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
-            });
 
-        function updateNavButtons() {
+                // expose navigation helpers with captured state
+                window.navigatePrev = () => navigatePrev(currentIndex, blogPosts);
+                window.navigateNext = () => navigateNext(currentIndex, blogPosts);
+            } catch (err) {
+                console.error('Error loading post:', err);
+                document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
+            }
+        }
+
+        function updateNavButtons(currentIndex, blogPosts) {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
-
-            if (currentPostIndex <= 0) {
-                prevBtn.disabled = true;
-            } else {
-                prevBtn.disabled = false;
-            }
-
-            if (currentPostIndex >= blogPosts.length - 1) {
-                nextBtn.disabled = true;
-            } else {
-                nextBtn.disabled = false;
-            }
+            prevBtn.disabled = currentIndex <= 0;
+            nextBtn.disabled = currentIndex >= blogPosts.length - 1;
         }
 
-        function navigatePrev() {
-            if (currentPostIndex > 0) {
-                const prevPost = blogPosts[currentPostIndex - 1].id;
-                window.location.href = `blog.html?post=${prevPost}`;
+        function navigatePrev(currentIndex, blogPosts) {
+            if (currentIndex > 0) {
+                const slug = blogPosts[currentIndex - 1].slug;
+                window.location.href = `blog.html?slug=${encodeURIComponent(slug)}`;
             }
         }
-
-        function navigateNext() {
-            if (currentPostIndex < blogPosts.length - 1) {
-                const nextPost = blogPosts[currentPostIndex + 1].id;
-                window.location.href = `blog.html?post=${nextPost}`;
+        function navigateNext(currentIndex, blogPosts) {
+            if (currentIndex < blogPosts.length - 1) {
+                const slug = blogPosts[currentIndex + 1].slug;
+                window.location.href = `blog.html?slug=${encodeURIComponent(slug)}`;
             }
         }
 
         function addStructuredData(metadata, canonicalUrl) {
-            const structuredData = {
+            const data = {
                 "@context": "https://schema.org",
                 "@type": "BlogPosting",
                 "headline": metadata.title,
                 "description": metadata.description,
-                "author": {
-                    "@type": "Person",
-                    "name": metadata.author || "Financial Insights"
-                },
+                "author": {"@type": "Person","name": metadata.author || "Financial Insights"},
                 "datePublished": metadata.date,
                 "dateModified": metadata.date,
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "Financial Insights",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": "https://bathanhn3.github.io/images/logo.png"
-                    }
-                },
+                "publisher": {"@type": "Organization","name": "Financial Insights","logo": {"@type": "ImageObject","url": "https://bathanhn3.github.io/images/logo.png"}},
                 "url": canonicalUrl,
                 "keywords": metadata.keywords
             };
-
             const script = document.createElement('script');
             script.type = 'application/ld+json';
-            script.innerHTML = JSON.stringify(structuredData);
+            script.textContent = JSON.stringify(data);
             document.head.appendChild(script);
         }
+
+        // initialize everything
+        (async () => {
+            const blogPosts = await fetchBlogPosts();
+            const currentId = getCurrentPostIdentifier(blogPosts);
+            let currentIndex = blogPosts.findIndex(p => p.id === currentId);
+            if (currentIndex === -1) currentIndex = 0;
+            buildSidebar(blogPosts, currentId);
+            await loadAndRenderPost(currentId, blogPosts, currentIndex);
+        })();
     </script>
 </body>
 </html>
