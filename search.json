@@ -1,0 +1,18 @@
+﻿---
+layout: null
+permalink: /search.json
+---
+[
+{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
+{% for post in tracked_posts %}
+  {
+    "title": {{ post.title | jsonify }},
+    "description": {{ post.description | default: '' | jsonify }},
+    "url": {{ post.url | relative_url | jsonify }},
+    "track": {{ post.track | default: '' | jsonify }},
+    "track_label": {{ post.track_label | default: '' | jsonify }},
+    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "date": "{{ post.date | date: '%Y-%m-%d' }}"
+  }{% unless forloop.last %},{% endunless %}
+{% endfor %}
+]

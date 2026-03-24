@@ -1,34 +1,47 @@
 ---
 layout: default
-title: Blog - Financial Insights
-description: Explore insightful articles on personal finance, investing, and financial management.
+title: Blog | Thành Labs
+description: Tong hop tat ca bai viet cua Thành Labs.
 permalink: /blog/
 ---
-<section class="hero">
+{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
+
+<section class="track-hero">
   <div class="container">
-    <h2>Financial Insights Blog</h2>
-    <p>Explore practical articles on personal finance, investing, and wealth building.</p>
+    <p class="eyebrow">Blog</p>
+    <h1>All articles</h1>
+    <p>Toan bo bai viet duoc sap xep theo hanh trinh Learn - Build - Explain, kem cac deep dive va bai viet ca nhan.</p>
+
+    <form class="site-search" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get" style="margin-top: 1rem; max-width: 540px;">
+      <label class="visually-hidden" for="blog-search">Search article</label>
+      <input id="blog-search" type="search" name="q" value="{{ page.query }}" placeholder="Search in all posts..." autocomplete="off" data-search-input>
+      <div class="search-results" data-search-results></div>
+    </form>
+
+    <div class="tag-row" style="margin-top: 0.8rem;">
+      <a class="tag-pill" href="{{ '/learn/' | relative_url }}">Learn</a>
+      <a class="tag-pill" href="{{ '/explain/' | relative_url }}">Explain</a>
+      <a class="tag-pill" href="{{ '/build/' | relative_url }}">Build</a>
+      <a class="tag-pill" href="{{ '/breakdown/' | relative_url }}">Breakdown</a>
+      <a class="tag-pill" href="{{ '/vibes/' | relative_url }}">Vibes</a>
+    </div>
   </div>
 </section>
 
-<section class="blog-list">
+<section class="section" style="padding-top: 1rem;">
   <div class="container">
-    <h2>All Articles</h2>
-    <ul>
-      {% for post in site.posts %}
+    <ul class="post-list">
+      {% for post in tracked_posts %}
       <li>
-        <div class="blog-post-card">
-          <span class="post-category">{{ post.category | default: "General" }}</span>
-          <div class="post-meta">
-            <span>{{ post.date | date: "%B %-d, %Y" }}</span>
-            <span>{{ post.readTime | default: "5 min read" }}</span>
-          </div>
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.description }}</p>
-          <a href="{{ post.url | relative_url }}">Read Article &rarr;</a>
+        <div class="post-item-top">
+          <span class="post-track">{{ post.track_label }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
         </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
       </li>
       {% endfor %}
     </ul>
   </div>
 </section>
+

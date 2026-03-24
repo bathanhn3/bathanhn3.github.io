@@ -1,26 +1,29 @@
-# bathanhn3.github.io
+﻿# Thành Labs
 
-This site now uses Jekyll with clean SEO-friendly URLs.
+Blog ca nhan ve cong nghe theo huong **Learn - Build - Explain**.
 
-## URL structure
+## Site structure
 
-- Homepage: `/`
-- Blog listing: `/blog/`
-- Blog post: `/blog/<slug>/`
-- About: `/about/`
-- Contact: `/contact/`
+- `/` homepage hub
+- `/learn/`
+- `/explain/`
+- `/build/`
+- `/breakdown/`
+- `/vibes/`
+- `/blog/`
+- `/roadmap/`
+- `/tags/`
 
-## Content structure
+## Tech
 
-- Posts: `_posts/YYYY-MM-DD-slug.md`
-- Layouts: `_layouts/`
-- Includes: `_includes/`
-- Styles: `css/`
+- Jekyll static site
+- GitHub Pages deploy
+- Search index: `/search.json` + client-side filtering
 
 ## Local run
 
-1. Install Ruby + Bundler.
-2. Install dependencies:
-   `bundle install`
-3. Run local server:
-   `bundle exec jekyll serve`
+1. `bundle install`
+2. `bundle exec jekyll serve`
+
+Neu gap loi Jekyll tren Ruby moi, dung Ruby/Jekyll version tuong thich voi GitHub Pages.
+

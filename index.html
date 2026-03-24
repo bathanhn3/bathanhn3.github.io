@@ -1,59 +1,204 @@
 ---
 layout: default
-title: Financial Insights - Knowledge Blog | Personal Finance & Investing Tips
-description: Financial Insights - Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.
+title: Thành Labs
+description: Learn. Build. Explain. Blog ca nhan ve code, SEO, AI va hanh trinh build in public.
 permalink: /
 ---
-{% assign featured_post = site.posts | where_exp: "post", "post.featured == true" | first %}
+{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' %}
+{% assign featured_posts = tracked_posts | where_exp: 'post', 'post.pillar == true' %}
+{% assign latest_posts = tracked_posts | sort: 'date' | reverse %}
+{% assign build_posts = tracked_posts | where: 'track', 'build' %}
 
-<section class="hero">
-  <div class="container">
-    <h2>Master Your Financial Future</h2>
-    <p>Discover practical tips, insights, and knowledge to take control of your personal finances and build wealth.</p>
-    <a href="#blog-section" class="btn-primary">Explore Our Blog</a>
-  </div>
-</section>
+<section class="hero-home">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Thành Labs</p>
+      <h1 class="hero-title">Thành Labs</h1>
+      <p class="hero-tagline">Learn. Build. Explain.</p>
+      <p class="hero-description">Noi Thành học cong nghe tu so 0, build project that va giai thich lai theo cach de hieu nhat. Day la navigation hub cho toan bo he thong kien thuc code, SEO va AI.</p>
 
-<section class="featured-section">
-  <div class="container">
-    <h2>Featured Read</h2>
-    {% if featured_post %}
-    <div class="featured-post">
-      <h3>{{ featured_post.title }}</h3>
-      <p>{{ featured_post.description }}</p>
-      <a href="{{ featured_post.url | relative_url }}">Read Full Article &rarr;</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ '/learn/' | relative_url }}">Start Learning</a>
+        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">Explore Articles</a>
+      </div>
+
+      <form class="site-search hero-search" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get">
+        <label class="visually-hidden" for="hero-search">Search article</label>
+        <input id="hero-search" type="search" name="q" placeholder="Tim: API, Python, SEO, AI..." autocomplete="off" data-search-input>
+        <div class="search-results" data-search-results></div>
+      </form>
     </div>
-    {% endif %}
+
+    <aside class="hero-card">
+      <h2>Core concept</h2>
+      <ul>
+        <li>Learn: hoc tu co ban den nang cao, ghi lai bai hoc that.</li>
+        <li>Build: lam project/tool thuc te va chia se process.</li>
+        <li>Explain: bien concept kho thanh vi du de hieu.</li>
+      </ul>
+    </aside>
   </div>
 </section>
 
-<section class="about-section" id="about-section">
+<section class="section">
   <div class="container">
-    <h2>About This Blog</h2>
-    <p>Financial Insights is dedicated to providing accessible, practical knowledge about personal finance. Whether you're just starting your financial journey or looking to optimize your strategy, we break down complex concepts into actionable insights.</p>
-    <p>Our mission is to empower individuals with the knowledge and tools necessary to make informed financial decisions and achieve their goals.</p>
+    <p class="eyebrow">About</p>
+    <h2>Thành là ai?</h2>
+    <p>Minh khong xay blog nay theo kieu giao trinh hay ban tin cong nghe. Muc tieu la build mot noi de hoc, ghi chep va chia se lai cach minh da hieu duoc van de trong code, SEO, AI thong qua trai nghiem that.</p>
   </div>
 </section>
 
-<section class="blog-list" id="blog-section">
+<section class="section">
   <div class="container">
-    <h2>Latest Articles</h2>
-    <ul>
-      {% for post in site.posts limit: 6 %}
+    <p class="eyebrow">Content Hub</p>
+    <h2>5 tuyen noi dung chinh</h2>
+    <div class="card-grid">
+      <a class="card card-link" href="{{ '/learn/' | relative_url }}">
+        <h3>Thành học</h3>
+        <p>Hoc code, SEO, AI tu so 0 va rut kinh nghiem tu nhung lan lam sai.</p>
+      </a>
+      <a class="card card-link" href="{{ '/explain/' | relative_url }}">
+        <h3>Thành giải thích</h3>
+        <p>Giai thich concept nhu API, HTTP, Python bang ngon ngu don gian.</p>
+      </a>
+      <a class="card card-link" href="{{ '/build/' | relative_url }}">
+        <h3>Thành build</h3>
+        <p>Project, tool va automation theo huong build in public.</p>
+      </a>
+      <a class="card card-link" href="{{ '/breakdown/' | relative_url }}">
+        <h3>Thành breakdown</h3>
+        <p>Deep dive vao cach system van hanh: crawl, API, architecture.</p>
+      </a>
+      <a class="card card-link" href="{{ '/vibes/' | relative_url }}">
+        <h3>Thành vibes</h3>
+        <p>Mindset, goc nhin va nhung cau chuyen ca nhan tren hanh trinh hoc.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Learning Path</p>
+    <h2>Lo trinh tu zero den build duoc thu that</h2>
+    <p>Lo trinh duoc thiet ke de nguoi moi di tung buoc ro rang thay vi hoc lan man.</p>
+
+    <div class="path-grid">
+      <article class="path-step">
+        <span class="step-number">01</span>
+        <h3>Foundation</h3>
+        <p>Hieu bien, ham, data structure va HTTP can ban.</p>
+      </article>
+      <article class="path-step">
+        <span class="step-number">02</span>
+        <h3>Automation</h3>
+        <p>Bat dau viet script Python va lam SEO workflow nho.</p>
+      </article>
+      <article class="path-step">
+        <span class="step-number">03</span>
+        <h3>System Thinking</h3>
+        <p>Hoc cach ghép API, luong du lieu, monitoring va debug.</p>
+      </article>
+      <article class="path-step">
+        <span class="step-number">04</span>
+        <h3>Build in Public</h3>
+        <p>Dong goi thanh project that, publish va nhan feedback.</p>
+      </article>
+    </div>
+
+    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/roadmap/' | relative_url }}">Xem roadmap chi tiet</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Featured Articles</p>
+    <h2>Pillar bai viet nen doc truoc</h2>
+    <ul class="post-list">
+      {% for post in featured_posts limit: 6 %}
       <li>
-        <div class="blog-post-card">
-          <span class="post-category">{{ post.category | default: "General" }}</span>
-          <div class="post-meta">
-            <span>{{ post.date | date: "%B %Y" }}</span>
-            <span>{{ post.readTime | default: "5 min read" }}</span>
-          </div>
-          <h3>{{ post.title }}</h3>
-          <p>{{ post.description }}</p>
-          <a href="{{ post.url | relative_url }}">Read Article &rarr;</a>
+        <div class="post-item-top">
+          <span class="post-track">{{ post.track_label }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
         </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
       </li>
       {% endfor %}
     </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Build</p>
+    <h2>Project va tool da lam</h2>
+    <div class="card-grid card-grid--three">
+      {% for post in build_posts limit: 3 %}
+      <article class="card">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/build/' | relative_url }}">Di toi Build hub</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Latest Posts</p>
+    <h2>Bai viet moi nhat</h2>
+    <ul class="post-list">
+      {% for post in latest_posts limit: 6 %}
+      <li>
+        <div class="post-item-top">
+          <span class="post-track">{{ post.track_label }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Search + Tags</p>
+    <h2>Tim nhanh theo chu de</h2>
+    <form class="site-search" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get">
+      <label class="visually-hidden" for="hub-search">Search by keyword</label>
+      <input id="hub-search" type="search" name="q" placeholder="Nhap tu khoa ban can tim" autocomplete="off" data-search-input>
+      <div class="search-results" data-search-results></div>
+    </form>
+
+    <div class="tag-row">
+      {% assign shown_tag = 0 %}
+      {% for tag in site.tags %}
+        {% assign tagged_posts = tag[1] | where_exp: 'post', 'post.track' %}
+        {% if tagged_posts.size > 0 and shown_tag < 12 %}
+          <a class="tag-pill" href="{{ '/tags/#' | relative_url }}{{ tag[0] | slugify }}">#{{ tag[0] }} ({{ tagged_posts.size }})</a>
+          {% assign shown_tag = shown_tag | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Subscribe</p>
+    <h2>Dang ky nhan bai moi</h2>
+    <div class="subscribe-card">
+      <p>Minh gui email khi co bai moi ve code, SEO, AI va nhung update tu hanh trinh build in public.</p>
+      <form class="subscribe-form" action="{{ site.subscribe_url }}" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/thanh-labs', 'popupwindow')">
+        <label class="visually-hidden" for="subscriber-email">Email</label>
+        <input id="subscriber-email" type="email" name="email" placeholder="you@example.com" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -66,3 +211,4 @@ permalink: /
   "url": "{{ '/' | absolute_url }}"
 }
 </script>
+

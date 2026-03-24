@@ -1,0 +1,50 @@
+---
+layout: default
+title: Tags | Thành Labs
+description: Danh sach tag va bai viet theo tung chu de.
+permalink: /tags/
+---
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">Tags</p>
+    <h1>Tag directory</h1>
+    <p>Tim bai theo concept va chu de. Moi tag la mot cluster de ban dao sau mot mảng cu the.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1rem;">
+  <div class="container">
+    <div class="tag-row">
+      {% for tag in site.tags %}
+        {% assign tag_posts = tag[1] | where_exp: 'post', 'post.track' %}
+        {% if tag_posts.size > 0 %}
+        <a class="tag-pill" href="#{{ tag[0] | slugify }}">#{{ tag[0] }} ({{ tag_posts.size }})</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <div class="tag-sections">
+      {% for tag in site.tags %}
+        {% assign tag_posts = tag[1] | where_exp: 'post', 'post.track' %}
+        {% if tag_posts.size > 0 %}
+        <section id="{{ tag[0] | slugify }}" class="tag-section">
+          <h3>#{{ tag[0] }}</h3>
+          <ul class="post-list">
+            {% for post in tag_posts %}
+            <li>
+              <div class="post-item-top">
+                <span class="post-track">{{ post.track_label }}</span>
+                <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+              </div>
+              <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+              <p>{{ post.description }}</p>
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+

@@ -1,14 +1,14 @@
-title: Financial Insights
-description: Your Knowledge Hub for Financial Education. Discover practical tips and insights about personal finance, investing, and wealth building.
+﻿title: Thành Labs
+description: Thành Labs la blog ca nhan ve cong nghe, noi Thành học, build va giai thich moi thu theo cach de hieu nhat.
 url: "https://bathanhn3.github.io"
 baseurl: ""
-lang: en
+lang: vi
 timezone: Asia/Bangkok
-author: Financial Insights
+author: Thanh
 
 markdown: kramdown
 highlighter: rouge
-permalink: /blog/:title/
+permalink: /:slug/
 
 plugins:
   - jekyll-seo-tag
@@ -21,7 +21,12 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - push.sh
-  - README.md
+
+subscribe_url: "https://buttondown.email/api/emails/embed-subscribe/thanh-labs"
+giscus_repo: ""
+giscus_repo_id: ""
+giscus_category: ""
+giscus_category_id: ""
 
 defaults:
   - scope:
@@ -29,12 +34,10 @@ defaults:
       type: "posts"
     values:
       layout: post
-      custom_css:
-        - /css/blog.css
+      author: Thanh
   - scope:
       path: ""
       type: "pages"
     values:
       layout: default
-      custom_css:
-        - /css/home.css
+

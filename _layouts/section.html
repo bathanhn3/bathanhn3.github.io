@@ -1,0 +1,47 @@
+---
+layout: default
+---
+{% assign section_posts = site.posts | where: 'track', page.track_key | sort: 'date' | reverse %}
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">{{ page.eyebrow }}</p>
+    <h1>{{ page.section_title }}</h1>
+    <p>{{ page.section_description }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1rem;">
+  <div class="container">
+    {% if page.section_points and page.section_points.size > 0 %}
+    <div class="card-grid card-grid--three">
+      {% for point in page.section_points %}
+      <article class="card">
+        <h3>{{ point.title }}</h3>
+        <p>{{ point.body }}</p>
+      </article>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <h2 style="margin-top: 1.5rem;">Bai viet trong chuyen muc</h2>
+    <ul class="post-list">
+      {% for post in section_posts %}
+      <li>
+        <div class="post-item-top">
+          <span class="post-track">{{ post.track_label }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% else %}
+      <li>
+        <h3>Dang cap nhat</h3>
+        <p>Chuyen muc nay dang duoc bo sung bai viet moi.</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+

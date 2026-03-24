@@ -1,0 +1,71 @@
+---
+layout: default
+title: Roadmap | Thành Labs
+description: Lo trinh hoc cong nghe tu zero den build duoc thu that.
+permalink: /roadmap/
+---
+{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
+{% assign learn_posts = tracked_posts | where: 'track', 'learn' %}
+{% assign explain_posts = tracked_posts | where: 'track', 'explain' %}
+{% assign build_posts = tracked_posts | where: 'track', 'build' %}
+{% assign breakdown_posts = tracked_posts | where: 'track', 'breakdown' %}
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">Roadmap</p>
+    <h1>Tu zero den build duoc thu that</h1>
+    <p>Lo trinh hoc goi y de di tu kien thuc co ban toi viec ship project va hieu system ben trong.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1rem;">
+  <div class="container">
+    <div class="roadmap-grid">
+      <article class="roadmap-card">
+        <h3>Phase 1 - Foundation</h3>
+        <p>Hoc core concept tu chuyen muc Learn va Explain: bien, ham, HTTP, API, SEO can ban.</p>
+      </article>
+      <article class="roadmap-card">
+        <h3>Phase 2 - Automation</h3>
+        <p>Bat dau viet script Python nho va ket noi API de xu ly bai toan lap lai.</p>
+      </article>
+      <article class="roadmap-card">
+        <h3>Phase 3 - Build</h3>
+        <p>Dong goi script thanh tool, tao workflow va public process build.</p>
+      </article>
+      <article class="roadmap-card">
+        <h3>Phase 4 - Deep understanding</h3>
+        <p>Doc breakdown de hieu crawl, architecture, monitoring va trade-off ky thuat.</p>
+      </article>
+    </div>
+
+    <h2 style="margin-top: 1.6rem;">Bai nen doc theo thu tu</h2>
+    <ol class="post-list">
+      {% for post in learn_posts limit: 2 %}
+      <li>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+      {% for post in explain_posts limit: 2 %}
+      <li>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+      {% for post in build_posts limit: 2 %}
+      <li>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+      {% for post in breakdown_posts limit: 1 %}
+      <li>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+

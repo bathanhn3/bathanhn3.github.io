@@ -1,63 +1,129 @@
 ---
 layout: default
 ---
-<div class="breadcrumb">
-  <div class="container">
-    <nav>
-      <a href="{{ '/' | relative_url }}">Home</a>
-      <span>/</span>
-      <a href="{{ '/blog/' | relative_url }}">Blog</a>
-      <span>/</span>
-      <span class="breadcrumb-current">{{ page.title }}</span>
-    </nav>
-  </div>
-</div>
+{% assign track_slug = page.track | default: 'blog' %}
+{% case track_slug %}
+  {% when 'learn' %}
+    {% assign track_label = 'Thành học' %}
+  {% when 'explain' %}
+    {% assign track_label = 'Thành giải thích' %}
+  {% when 'build' %}
+    {% assign track_label = 'Thành build' %}
+  {% when 'breakdown' %}
+    {% assign track_label = 'Thành breakdown' %}
+  {% when 'vibes' %}
+    {% assign track_label = 'Thành vibes' %}
+  {% else %}
+    {% assign track_label = 'Blog' %}
+{% endcase %}
 
-<section class="blog-post">
-  <div class="container">
-    <div class="blog-container">
-      <article id="post-content">
-        <h1 class="post-title">{{ page.title }}</h1>
-        <div class="post-metadata">
-          <div class="post-category-badge">{{ page.category | default: "Uncategorized" }}</div>
-          <div class="post-metadata-item">
-            <span>Published:</span><span>{{ page.date | date: "%B %-d, %Y" }}</span>
-          </div>
-          <div class="post-metadata-item">
-            <span>Author:</span><span>{{ page.author | default: site.author }}</span>
-          </div>
-          <div class="post-metadata-item">
-            <span>Read time:</span><span>{{ page.readTime | default: "5 min read" }}</span>
-          </div>
-        </div>
+{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' %}
+{% assign related_posts = tracked_posts | where: 'track', page.track | where_exp: 'post', 'post.url != page.url' %}
+
+<article class="post-page">
+  <header class="post-header">
+    <div class="container">
+      <p class="eyebrow">
+        <a href="{{ '/' | relative_url }}">Home</a>
+        <span>/</span>
+        <a href="{{ '/' | relative_url }}{{ track_slug }}/">{{ track_label }}</a>
+      </p>
+
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="post-description">{{ page.description }}</p>
+      {% endif %}
+
+      <div class="post-meta">
+        <span>{{ page.date | date: '%d/%m/%Y' }}</span>
+        <span>{{ page.readTime | default: '8 min read' }}</span>
+        <span>{{ page.author | default: site.author }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="container post-layout">
+    <aside class="post-toc">
+      <h2>Muc luc</h2>
+      <ul id="toc-list"></ul>
+    </aside>
+
+    <div class="post-main">
+      <div id="post-content" class="post-content">
         {{ content }}
-      </article>
+      </div>
 
-      <aside class="blog-sidebar">
-        <h3>All Posts</h3>
-        <ul id="blog-list">
-          {% for post in site.posts %}
-          <li><a href="{{ post.url | relative_url }}" {% if post.url == page.url %}class="active"{% endif %}>{{ post.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </aside>
-    </div>
-
-    <div class="blog-nav-buttons">
-      {% if page.next %}
-      <a class="btn-nav" href="{{ page.next.url | relative_url }}">&larr; Newer</a>
-      {% else %}
-      <span class="btn-nav" style="opacity: 0.5; cursor: not-allowed;">&larr; Newer</span>
-      {% endif %}
-      <a href="{{ '/blog/' | relative_url }}" class="btn-nav" style="flex: 0.8;">Back to Blog</a>
-      {% if page.previous %}
-      <a class="btn-nav" href="{{ page.previous.url | relative_url }}">Older &rarr;</a>
-      {% else %}
-      <span class="btn-nav" style="opacity: 0.5; cursor: not-allowed;">Older &rarr;</span>
+      {% if page.tags and page.tags.size > 0 %}
+      <div class="post-tags-inline">
+        {% for tag in page.tags %}
+        <a class="tag-pill" href="{{ '/tags/#' | relative_url }}{{ tag | slugify }}">#{{ tag }}</a>
+        {% endfor %}
+      </div>
       {% endif %}
     </div>
   </div>
-</section>
+
+  <section class="related-section">
+    <div class="container">
+      <h2>Related posts</h2>
+      <div class="card-grid card-grid--three">
+        {% for post in related_posts limit: 3 %}
+        <article class="card">
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <p>{{ post.description }}</p>
+        </article>
+        {% else %}
+        <article class="card">
+          <h3><a href="{{ '/blog/' | relative_url }}">Xem tat ca bai viet</a></h3>
+          <p>Chua co bai lien quan trong cung track. Ban co the mo blog de tiep tuc kham pha.</p>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="post-nav-section">
+    <div class="container post-nav">
+      <div>
+        {% if page.next and page.next.track %}
+        <a class="btn btn-secondary" href="{{ page.next.url | relative_url }}">&larr; Previous post</a>
+        {% else %}
+        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">&larr; Back to blog</a>
+        {% endif %}
+      </div>
+      <div>
+        {% if page.previous and page.previous.track %}
+        <a class="btn btn-secondary" href="{{ page.previous.url | relative_url }}">Next post &rarr;</a>
+        {% else %}
+        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">Browse all posts &rarr;</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if site.giscus_repo != '' and site.giscus_repo_id != '' and site.giscus_category != '' and site.giscus_category_id != '' %}
+  <section class="comments-section">
+    <div class="container">
+      <h2>Discussion</h2>
+      <script src="https://giscus.app/client.js"
+              data-repo="{{ site.giscus_repo }}"
+              data-repo-id="{{ site.giscus_repo_id }}"
+              data-category="{{ site.giscus_category }}"
+              data-category-id="{{ site.giscus_category_id }}"
+              data-mapping="pathname"
+              data-strict="1"
+              data-reactions-enabled="1"
+              data-emit-metadata="0"
+              data-input-position="top"
+              data-theme="preferred_color_scheme"
+              data-lang="vi"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
+  </section>
+  {% endif %}
+</article>
 
 <script type="application/ld+json">
 {
@@ -75,7 +141,7 @@ layout: default
     "@type": "Organization",
     "name": {{ site.title | jsonify }}
   },
-  "url": "{{ page.url | absolute_url }}",
-  "keywords": {{ page.keywords | default: '' | jsonify }}
+  "url": "{{ page.url | absolute_url }}"
 }
 </script>
+
