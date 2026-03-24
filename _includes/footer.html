@@ -1,11 +1,37 @@
-<footer>
-  <div class="container">
-    <p>&copy; {{ 'now' | date: '%Y' }} Financial Insights. All rights reserved. | Empowering financial knowledge, one article at a time.</p>
-    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-      <a href="{{ '/' | relative_url }}" style="color: #667eea; text-decoration: none;">Home</a> |
-      <a href="{{ '/blog/' | relative_url }}" style="color: #667eea; text-decoration: none;">Blog</a> |
-      <a href="{{ '/about/' | relative_url }}" style="color: #667eea; text-decoration: none;">About</a> |
-      <a href="{{ '/contact/' | relative_url }}" style="color: #667eea; text-decoration: none;">Contact</a>
-    </p>
+﻿<footer class="site-footer">
+  <div class="container footer-grid">
+    <section>
+      <h2>Thành Labs</h2>
+      <p>Learn. Build. Explain.</p>
+      <p>From zero to building real things.</p>
+    </section>
+
+    <section>
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="{{ '/learn/' | relative_url }}">Thành học</a></li>
+        <li><a href="{{ '/explain/' | relative_url }}">Thành giải thích</a></li>
+        <li><a href="{{ '/build/' | relative_url }}">Thành build</a></li>
+        <li><a href="{{ '/breakdown/' | relative_url }}">Thành breakdown</a></li>
+        <li><a href="{{ '/vibes/' | relative_url }}">Thành vibes</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Sitemap</h2>
+      <ul>
+        <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
+        <li><a href="{{ '/roadmap/' | relative_url }}">Roadmap</a></li>
+        <li><a href="{{ '/tags/' | relative_url }}">Tags</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
+        <li><a href="{{ '/sitemap.xml' | relative_url }}">XML Sitemap</a></li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="container footer-meta">
+    <p>&copy; {{ 'now' | date: '%Y' }} Thành Labs. Built on Jekyll + GitHub Pages.</p>
   </div>
 </footer>
+
