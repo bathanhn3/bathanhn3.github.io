@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Roadmap | Thành Labs
-description: Lo trinh hoc cong nghe tu zero den build duoc thu that.
+title: Lộ trình | Thành Labs
+description: Lộ trình học công nghệ từ số 0 đến build được thứ thật.
 permalink: /roadmap/
 ---
 {% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
@@ -12,9 +12,9 @@ permalink: /roadmap/
 
 <section class="track-hero">
   <div class="container">
-    <p class="eyebrow">Roadmap</p>
-    <h1>Tu zero den build duoc thu that</h1>
-    <p>Lo trinh hoc goi y de di tu kien thuc co ban toi viec ship project va hieu system ben trong.</p>
+    <p class="eyebrow">Lộ trình</p>
+    <h1>Từ số 0 đến build được thứ thật</h1>
+    <p>Lộ trình học gợi ý để đi từ kiến thức cơ bản tới việc ship project và hiểu hệ thống bên trong.</p>
   </div>
 </section>
 
@@ -22,24 +22,24 @@ permalink: /roadmap/
   <div class="container">
     <div class="roadmap-grid">
       <article class="roadmap-card">
-        <h3>Phase 1 - Foundation</h3>
-        <p>Hoc core concept tu chuyen muc Learn va Explain: bien, ham, HTTP, API, SEO can ban.</p>
+        <h3>Giai đoạn 1 - Nền tảng</h3>
+        <p>Học concept cốt lõi từ chuyên mục Học và Giải thích: biến, hàm, HTTP, API, SEO cơ bản.</p>
       </article>
       <article class="roadmap-card">
-        <h3>Phase 2 - Automation</h3>
-        <p>Bat dau viet script Python nho va ket noi API de xu ly bai toan lap lai.</p>
+        <h3>Giai đoạn 2 - Tự động hóa</h3>
+        <p>Bắt đầu viết script Python nhỏ và kết nối API để xử lý bài toán lặp lại.</p>
       </article>
       <article class="roadmap-card">
-        <h3>Phase 3 - Build</h3>
-        <p>Dong goi script thanh tool, tao workflow va public process build.</p>
+        <h3>Giai đoạn 3 - Xây dựng</h3>
+        <p>Đóng gói script thành tool, tạo workflow và công khai quá trình build.</p>
       </article>
       <article class="roadmap-card">
-        <h3>Phase 4 - Deep understanding</h3>
-        <p>Doc breakdown de hieu crawl, architecture, monitoring va trade-off ky thuat.</p>
+        <h3>Giai đoạn 4 - Hiểu sâu</h3>
+        <p>Đọc mục phân tích để hiểu crawl, kiến trúc, monitoring và các đánh đổi kỹ thuật.</p>
       </article>
     </div>
 
-    <h2 style="margin-top: 1.6rem;">Bai nen doc theo thu tu</h2>
+    <h2 style="margin-top: 1.6rem;">Bài nên đọc theo thứ tự</h2>
     <ol class="post-list">
       {% for post in learn_posts limit: 2 %}
       <li>
@@ -68,4 +68,3 @@ permalink: /roadmap/
     </ol>
   </div>
 </section>
-
