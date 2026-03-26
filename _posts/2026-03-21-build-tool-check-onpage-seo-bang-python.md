@@ -1,11 +1,12 @@
 ---
 title: "Build tool check onpage SEO bang Python"
 slug: "build-tool-check-onpage-seo-bang-python"
+permalink: /xay-dung/build-tool-check-onpage-seo-bang-python/
 description: "Case study build mot tool nho de check title, meta description, canonical va heading tren danh sach URL."
 date: "2026-03-21"
 readTime: "11 min read"
-track: build
-track_label: "Thành build"
+track: xay-dung
+track_label: "Thanh xay dung"
 tags:
   - build
   - seo
@@ -76,6 +77,6 @@ Khi cho nguoi khac dung thu, minh moi thay cac edge case minh da bo sot.
 
 ## Doc tiep
 
-- [Tu script den mini product: quy trinh ship 7 ngay](/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
-- [Googlebot crawl hoat dong ra sao?](/googlebot-crawl-hoat-dong-ra-sao/)
+- [Tu script den mini product: quy trinh ship 7 ngay](/xay-dung/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
+- [Googlebot crawl hoat dong ra sao?](/phan-tich/googlebot-crawl-hoat-dong-ra-sao/)
 

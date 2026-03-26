@@ -1,11 +1,12 @@
 ---
 title: "Googlebot crawl hoat dong ra sao?"
 slug: "googlebot-crawl-hoat-dong-ra-sao"
+permalink: /phan-tich/googlebot-crawl-hoat-dong-ra-sao/
 description: "Breakdown cach Googlebot discover URL, crawl, render va quyet dinh index - goc nhin practical cho SEO technical."
 date: "2026-03-20"
 readTime: "10 min read"
-track: breakdown
-track_label: "Thành breakdown"
+track: phan-tich
+track_label: "Thanh phan tich"
 tags:
   - breakdown
   - seo
@@ -81,6 +82,6 @@ Time to first byte cao anh huong truc tiep toi tan suat crawl.
 
 ## Doc tiep
 
-- [Build tool check onpage SEO bang Python](/build-tool-check-onpage-seo-bang-python/)
-- [API la gi va cach goi API bang Python](/api-la-gi-va-cach-goi-api-bang-python/)
+- [Build tool check onpage SEO bang Python](/xay-dung/build-tool-check-onpage-seo-bang-python/)
+- [API la gi va cach goi API bang Python](/giai-thich/api-la-gi-va-cach-goi-api-bang-python/)
 

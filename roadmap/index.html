@@ -5,10 +5,10 @@ description: Lộ trình học công nghệ từ số 0 đến build được th
 permalink: /roadmap/
 ---
 {% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
-{% assign learn_posts = tracked_posts | where: 'track', 'learn' %}
-{% assign explain_posts = tracked_posts | where: 'track', 'explain' %}
-{% assign build_posts = tracked_posts | where: 'track', 'build' %}
-{% assign breakdown_posts = tracked_posts | where: 'track', 'breakdown' %}
+{% assign learn_posts = tracked_posts | where: 'track', 'hoc' %}
+{% assign explain_posts = tracked_posts | where: 'track', 'giai-thich' %}
+{% assign build_posts = tracked_posts | where: 'track', 'xay-dung' %}
+{% assign breakdown_posts = tracked_posts | where: 'track', 'phan-tich' %}
 
 <section class="track-hero">
   <div class="container">

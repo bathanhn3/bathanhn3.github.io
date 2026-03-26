@@ -7,7 +7,7 @@ permalink: /
 {% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' %}
 {% assign featured_posts = tracked_posts | where_exp: 'post', 'post.pillar == true' %}
 {% assign latest_posts = tracked_posts | sort: 'date' | reverse %}
-{% assign build_posts = tracked_posts | where: 'track', 'build' %}
+{% assign build_posts = tracked_posts | where: 'track', 'xay-dung' %}
 
 <section class="hero-home">
   <div class="container hero-grid">
@@ -18,7 +18,7 @@ permalink: /
       <p class="hero-description">Nơi Thành học công nghệ từ số 0, build dự án thật và giải thích lại theo cách dễ hiểu nhất. Đây là trang trung tâm điều hướng toàn bộ hệ thống kiến thức về code, SEO và AI.</p>
 
       <div class="hero-actions">
-        <a class="btn btn-primary" href="{{ '/learn/' | relative_url }}">Bắt đầu học</a>
+        <a class="btn btn-primary" href="{{ '/hoc/' | relative_url }}">Bắt đầu học</a>
         <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">Khám phá bài viết</a>
       </div>
 
@@ -53,23 +53,23 @@ permalink: /
     <p class="eyebrow">Trung tâm nội dung</p>
     <h2>5 tuyến nội dung chính</h2>
     <div class="card-grid">
-      <a class="card card-link" href="{{ '/learn/' | relative_url }}">
+      <a class="card card-link" href="{{ '/hoc/' | relative_url }}">
         <h3>Thành học</h3>
         <p>Học code, SEO, AI từ số 0 và rút kinh nghiệm từ những lần làm sai.</p>
       </a>
-      <a class="card card-link" href="{{ '/explain/' | relative_url }}">
+      <a class="card card-link" href="{{ '/giai-thich/' | relative_url }}">
         <h3>Thành giải thích</h3>
         <p>Giải thích concept như API, HTTP, Python bằng ngôn ngữ đơn giản.</p>
       </a>
-      <a class="card card-link" href="{{ '/build/' | relative_url }}">
+      <a class="card card-link" href="{{ '/xay-dung/' | relative_url }}">
         <h3>Thành xây dựng</h3>
         <p>Dự án, công cụ và tự động hóa theo hướng build in public.</p>
       </a>
-      <a class="card card-link" href="{{ '/breakdown/' | relative_url }}">
+      <a class="card card-link" href="{{ '/phan-tich/' | relative_url }}">
         <h3>Thành phân tích</h3>
         <p>Phân tích sâu cách hệ thống vận hành: crawl, API, kiến trúc.</p>
       </a>
-      <a class="card card-link" href="{{ '/vibes/' | relative_url }}">
+      <a class="card card-link" href="{{ '/goc-nhin/' | relative_url }}">
         <h3>Thành góc nhìn</h3>
         <p>Mindset, góc nhìn và những câu chuyện cá nhân trên hành trình học.</p>
       </a>
@@ -141,7 +141,7 @@ permalink: /
       </article>
       {% endfor %}
     </div>
-    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/build/' | relative_url }}">Đi tới hub Xây dựng</a></p>
+    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/xay-dung/' | relative_url }}">Đi tới hub Xây dựng</a></p>
   </div>
 </section>
 

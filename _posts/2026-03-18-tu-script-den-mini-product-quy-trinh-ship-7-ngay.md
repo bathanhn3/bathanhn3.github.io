@@ -1,11 +1,12 @@
 ---
 title: "Tu script den mini product: quy trinh ship 7 ngay"
 slug: "tu-script-den-mini-product-quy-trinh-ship-7-ngay"
+permalink: /xay-dung/tu-script-den-mini-product-quy-trinh-ship-7-ngay/
 description: "Framework 7 ngay de bien mot script automation thanh mini-product co the public va dung that."
 date: "2026-03-18"
 readTime: "9 min read"
-track: build
-track_label: "Thành build"
+track: xay-dung
+track_label: "Thanh xay dung"
 tags:
   - build
   - product
@@ -57,6 +58,6 @@ Publish len GitHub, viet bai chia se ngan va moi 3-5 nguoi dung thu.
 
 ## Doc tiep
 
-- [Build tool check onpage SEO bang Python](/build-tool-check-onpage-seo-bang-python/)
-- [Build in public giup minh tang toc hoc nhu the nao](/build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao/)
+- [Build tool check onpage SEO bang Python](/xay-dung/build-tool-check-onpage-seo-bang-python/)
+- [Build in public giup minh tang toc hoc nhu the nao](/goc-nhin/build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao/)
 

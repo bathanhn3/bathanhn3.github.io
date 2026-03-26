@@ -1,11 +1,12 @@
 ---
 title: "Python la gi? Tu zero den script dau tien"
 slug: "python-la-gi-tu-zero-den-script-dau-tien"
+permalink: /giai-thich/python-la-gi-tu-zero-den-script-dau-tien/
 description: "Giai thich Python theo cach de hieu nhat cho nguoi moi, kem lo trinh de viet script dau tien trong 1 buoi."
 date: "2026-03-24"
 readTime: "8 min read"
-track: explain
-track_label: "Thành giải thích"
+track: giai-thich
+track_label: "Thanh giai thich"
 tags:
   - python
   - beginner
@@ -71,6 +72,6 @@ Moi loi gap phai la mot tai san. Khi ghi lai ly do sai, toc do hoc tang rat nhan
 
 ## Doc tiep
 
-- [API la gi va cach goi API bang Python](/api-la-gi-va-cach-goi-api-bang-python/)
-- [Lo trinh hoc code tu so 0 trong 6 thang](/lo-trinh-hoc-code-tu-so-0-trong-6-thang/)
+- [API la gi va cach goi API bang Python](/giai-thich/api-la-gi-va-cach-goi-api-bang-python/)
+- [Lo trinh hoc code tu so 0 trong 6 thang](/hoc/lo-trinh-hoc-code-tu-so-0-trong-6-thang/)
 

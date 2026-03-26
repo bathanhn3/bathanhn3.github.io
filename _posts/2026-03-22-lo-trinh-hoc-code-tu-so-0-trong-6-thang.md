@@ -1,11 +1,12 @@
 ---
 title: "Lo trinh hoc code tu so 0 trong 6 thang"
 slug: "lo-trinh-hoc-code-tu-so-0-trong-6-thang"
+permalink: /hoc/lo-trinh-hoc-code-tu-so-0-trong-6-thang/
 description: "Ke hoach 6 thang hoc code theo huong thuc dung: tu nen tang toi build project dau tay."
 date: "2026-03-22"
 readTime: "10 min read"
-track: learn
-track_label: "Thành học"
+track: hoc
+track_label: "Thanh hoc"
 tags:
   - roadmap
   - beginner
@@ -68,5 +69,5 @@ Neu khong giai thich duoc bang loi cua minh, nghia la ban chua hieu du sau.
 ## Doc tiep
 
 - [Roadmap chi tiet](/roadmap/)
-- [Build in public giup minh tang toc hoc nhu the nao](/build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao/)
+- [Build in public giup minh tang toc hoc nhu the nao](/goc-nhin/build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao/)
 

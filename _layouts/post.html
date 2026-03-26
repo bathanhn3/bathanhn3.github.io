@@ -3,14 +3,24 @@ layout: default
 ---
 {% assign track_slug = page.track | default: 'blog' %}
 {% case track_slug %}
+  {% when 'hoc' %}
+    {% assign track_label = 'Thành học' %}
   {% when 'learn' %}
     {% assign track_label = 'Thành học' %}
+  {% when 'giai-thich' %}
+    {% assign track_label = 'Thành giải thích' %}
   {% when 'explain' %}
     {% assign track_label = 'Thành giải thích' %}
+  {% when 'xay-dung' %}
+    {% assign track_label = 'Thành xây dựng' %}
   {% when 'build' %}
     {% assign track_label = 'Thành build' %}
+  {% when 'phan-tich' %}
+    {% assign track_label = 'Thành phân tích' %}
   {% when 'breakdown' %}
     {% assign track_label = 'Thành breakdown' %}
+  {% when 'goc-nhin' %}
+    {% assign track_label = 'Thành góc nhìn' %}
   {% when 'vibes' %}
     {% assign track_label = 'Thành vibes' %}
   {% else %}

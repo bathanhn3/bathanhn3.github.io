@@ -5,11 +5,11 @@ Blog ca nhan ve cong nghe theo huong **Learn - Build - Explain**.
 ## Site structure
 
 - `/` homepage hub
-- `/learn/`
-- `/explain/`
-- `/build/`
-- `/breakdown/`
-- `/vibes/`
+- `/hoc/`
+- `/giai-thich/`
+- `/xay-dung/`
+- `/phan-tich/`
+- `/goc-nhin/`
 - `/blog/`
 - `/roadmap/`
 - `/tags/`

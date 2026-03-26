@@ -1,11 +1,12 @@
 ---
 title: "Build in public giup minh tang toc hoc nhu the nao"
 slug: "build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao"
+permalink: /goc-nhin/build-in-public-giup-minh-tang-toc-hoc-nhu-the-nao/
 description: "Vi sao minh chon build in public va nhung thay doi lon ve toc do hoc, chat luong output va authority."
 date: "2026-03-19"
 readTime: "7 min read"
-track: vibes
-track_label: "Thành vibes"
+track: goc-nhin
+track_label: "Thanh goc nhin"
 tags:
   - vibes
   - mindset
@@ -55,6 +56,6 @@ Authority khong den tu mot bai viral, ma den tu consistency va do huu ich.
 
 ## Doc tiep
 
-- [Lo trinh hoc code tu so 0 trong 6 thang](/lo-trinh-hoc-code-tu-so-0-trong-6-thang/)
-- [Tu script den mini product: quy trinh ship 7 ngay](/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
+- [Lo trinh hoc code tu so 0 trong 6 thang](/hoc/lo-trinh-hoc-code-tu-so-0-trong-6-thang/)
+- [Tu script den mini product: quy trinh ship 7 ngay](/xay-dung/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
 

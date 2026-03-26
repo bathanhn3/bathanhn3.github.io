@@ -1,11 +1,12 @@
 ---
 title: "API la gi va cach goi API bang Python"
 slug: "api-la-gi-va-cach-goi-api-bang-python"
+permalink: /giai-thich/api-la-gi-va-cach-goi-api-bang-python/
 description: "Hieu dung API, request, response va cach goi API bang Python requests voi vi du thuc te."
 date: "2026-03-23"
 readTime: "9 min read"
-track: explain
-track_label: "Thành giải thích"
+track: giai-thich
+track_label: "Thanh giai thich"
 tags:
   - api
   - http
@@ -75,6 +76,6 @@ Khi da hieu API, ban co the:
 
 ## Doc tiep
 
-- [Python la gi? Tu zero den script dau tien](/python-la-gi-tu-zero-den-script-dau-tien/)
-- [Tu script den mini product: quy trinh ship 7 ngay](/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
+- [Python la gi? Tu zero den script dau tien](/giai-thich/python-la-gi-tu-zero-den-script-dau-tien/)
+- [Tu script den mini product: quy trinh ship 7 ngay](/xay-dung/tu-script-den-mini-product-quy-trinh-ship-7-ngay/)
 
