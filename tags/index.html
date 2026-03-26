@@ -18,7 +18,7 @@ permalink: /tags/
       {% for tag in site.tags %}
         {% assign tag_posts = tag[1] | where_exp: 'post', 'post.track' %}
         {% if tag_posts.size > 0 %}
-        <a class="tag-pill" href="#{{ tag[0] | slugify }}">#{{ tag[0] }} ({{ tag_posts.size }})</a>
+        <a class="tag-pill" href="{{ '/tags/' | relative_url }}{{ tag[0] | slugify }}/">#{{ tag[0] }} ({{ tag_posts.size }})</a>
         {% endif %}
       {% endfor %}
     </div>

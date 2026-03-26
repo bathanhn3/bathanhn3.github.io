@@ -179,7 +179,7 @@ permalink: /
       {% for tag in site.tags %}
         {% assign tagged_posts = tag[1] | where_exp: 'post', 'post.track' %}
         {% if tagged_posts.size > 0 and shown_tag < 12 %}
-          <a class="tag-pill" href="{{ '/tags/#' | relative_url }}{{ tag[0] | slugify }}">#{{ tag[0] }} ({{ tagged_posts.size }})</a>
+          <a class="tag-pill" href="{{ '/tags/' | relative_url }}{{ tag[0] | slugify }}/">#{{ tag[0] }} ({{ tagged_posts.size }})</a>
           {% assign shown_tag = shown_tag | plus: 1 %}
         {% endif %}
       {% endfor %}
