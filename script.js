@@ -194,6 +194,36 @@
     });
   }
 
+  var menuToggle = document.querySelector('[data-menu-toggle]');
+  var navDrawer = document.querySelector('[data-nav-drawer]');
+
+  if (menuToggle && navDrawer) {
+    menuToggle.addEventListener('click', function () {
+      var isOpen = navDrawer.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      menuToggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    });
+
+    document.addEventListener('click', function (event) {
+      if (!navDrawer.classList.contains('is-open')) {
+        return;
+      }
+      if (!menuToggle.contains(event.target) && !navDrawer.contains(event.target)) {
+        navDrawer.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+      }
+    });
+
+    navDrawer.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navDrawer.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+      });
+    });
+  }
+
   var tocList = document.getElementById('toc-list');
   var postContent = document.getElementById('post-content');
 
