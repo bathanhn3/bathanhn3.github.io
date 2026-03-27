@@ -742,6 +742,41 @@ img {
   font-size: 0.92em;
 }
 
+.post-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.4rem 0;
+  font-size: 0.95em;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.post-content thead {
+  background: var(--surface-soft);
+}
+
+.post-content th,
+.post-content td {
+  padding: 0.65rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.post-content th {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.post-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.post-content tbody tr:hover {
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
+}
+
 .post-tags-inline {
   margin-top: 1rem;
   display: flex;
