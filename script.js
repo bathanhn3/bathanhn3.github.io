@@ -200,7 +200,6 @@
   if (tocList && postContent) {
     var headings = postContent.querySelectorAll('h2, h3');
     if (!headings.length) {
-      tocList.innerHTML = '<li><span class="tag-pill">No section heading</span></li>';
       return;
     }
 
