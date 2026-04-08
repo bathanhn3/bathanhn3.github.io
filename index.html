@@ -138,26 +138,6 @@ permalink: /
   </div>
 </section>
 
-<!-- NEWSLETTER -->
-<section class="section" id="newsletter">
-  <div class="container newsletter-grid">
-    <div>
-      <p class="eyebrow">SEO Notes</p>
-      <h2>Newsletter</h2>
-      <p>Mỗi 2 tuần: 1 experiment từ Lab + 1 bài phân tích. Không có gì khác.</p>
-      {% if site.newsletter_count != '' %}
-      <p class="newsletter-count">{{ site.newsletter_count }} subscribers</p>
-      {% endif %}
-    </div>
-    <div class="newsletter-form-wrap">
-      <form class="newsletter-form" action="{{ site.newsletter_url | default: '#' }}" method="post">
-        <input type="email" name="email" placeholder="email@example.com" required>
-        <button type="submit" class="btn btn-primary">Đăng ký →</button>
-      </form>
-    </div>
-  </div>
-</section>
-
 <!-- ABOUT -->
 <section class="section section--alt">
   <div class="container about-mini">
