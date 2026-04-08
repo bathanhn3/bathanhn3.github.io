@@ -1,10 +1,32 @@
-﻿title: Thành Labs
-description: Thành Labs la blog ca nhan ve cong nghe, noi Thành học, build va giai thich moi thu theo cach de hieu nhat.
+title: "Thanh · SEO"
+description: "SEO specialist chuyên technical SEO, content strategy, và AI visibility. Founder agrowth.io. Ghi chép từ việc tự làm SEO thật."
 url: "https://bathanhn3.github.io"
 baseurl: ""
 lang: vi
 timezone: Asia/Bangkok
-author: Thanh
+
+author:
+  name: "Thành Nguyễn Bá"
+  short_name: "Thanh"
+  role: "SEO Strategist"
+  bio: "SEO Strategist với 4+ năm kinh nghiệm. Founder agrowth.io. Tôi dùng site này để ghi lại những gì học được từ việc tự làm SEO thật."
+  agrowth_url: "https://agrowth.io"
+  linkedin_url: "https://linkedin.com/in/bathanhn2"
+
+# Homepage stats (update thủ công)
+stats:
+  articles: "30+"
+  experiments: "5"
+  newsletter: "—"
+
+# Newsletter
+newsletter_count: ""
+newsletter_url: ""
+
+# AI citation signal
+ai_citations:
+  - name: "ChatGPT"
+  - name: "Perplexity"
 
 markdown: kramdown
 highlighter: rouge
@@ -22,12 +44,6 @@ exclude:
   - Gemfile.lock
   - push.sh
 
-subscribe_url: "https://buttondown.email/api/emails/embed-subscribe/thanh-labs"
-giscus_repo: ""
-giscus_repo_id: ""
-giscus_category: ""
-giscus_category_id: ""
-
 defaults:
   - scope:
       path: ""
@@ -40,4 +56,3 @@ defaults:
       type: "pages"
     values:
       layout: default
-

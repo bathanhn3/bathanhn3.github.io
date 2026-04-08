@@ -1,35 +1,32 @@
-﻿<footer class="site-footer">
+<footer class="site-footer">
   <div class="container footer-grid">
     <section>
-      <h2>Thành Labs</h2>
-      <p>Learn. Build. Explain.</p>
-      <p>From zero to building real things.</p>
+      <h2>Thanh <span class="logo-dot">·</span> SEO Specialist</h2>
+      <p>Nghiên cứu technical SEO, content strategy, và AI visibility. Ghi chép từ việc tự làm SEO thật.</p>
+      <p style="margin-top: 0.6rem;"><a href="{{ site.author.agrowth_url }}" target="_blank" rel="noopener" style="color: var(--accent); text-decoration: none;">agrowth.io ↗</a></p>
     </section>
 
     <section>
-      <h2>Navigation</h2>
+      <h2>Nội dung</h2>
       <ul>
-        <li><a href="{{ '/hoc/' | relative_url }}">Thành học</a></li>
-        <li><a href="{{ '/giai-thich/' | relative_url }}">Thành giải thích</a></li>
-        <li><a href="{{ '/xay-dung/' | relative_url }}">Thành xây dựng</a></li>
-        <li><a href="{{ '/phan-tich/' | relative_url }}">Thành phân tích</a></li>
-        <li><a href="{{ '/goc-nhin/' | relative_url }}">Thành góc nhìn</a></li>
+        <li><a href="{{ '/kien-thuc/' | relative_url }}">Kiến thức</a></li>
+        <li><a href="{{ '/lab/' | relative_url }}">Lab</a></li>
+        <li><a href="{{ '/teardowns/' | relative_url }}">Teardowns</a></li>
+        <li><a href="{{ site.newsletter_url | default: '#newsletter' }}">Newsletter</a></li>
       </ul>
     </section>
 
     <section>
-      <h2>Sitemap</h2>
+      <h2>Connect</h2>
       <ul>
-        <li><a href="{{ '/blog/' | relative_url }}">Blog</a></li>
-        <li><a href="{{ '/about/' | relative_url }}">About</a></li>
-        <li><a href="{{ '/contact/' | relative_url }}">Contact</a></li>
-        <li><a href="{{ '/sitemap.xml' | relative_url }}">XML Sitemap</a></li>
+        <li><a href="{{ site.author.linkedin_url }}" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        <li><a href="{{ site.author.agrowth_url }}" target="_blank" rel="noopener">agrowth.io ↗</a></li>
+        <li><a href="{{ '/about/' | relative_url }}">Về tôi</a></li>
       </ul>
     </section>
   </div>
 
   <div class="container footer-meta">
-    <p>&copy; {{ 'now' | date: '%Y' }} Thành Labs. Built on Jekyll + GitHub Pages.</p>
+    <p>&copy; {{ 'now' | date: '%Y' }} Thanh · Built with Jekyll</p>
   </div>
 </footer>
-

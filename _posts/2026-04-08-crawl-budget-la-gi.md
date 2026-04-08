@@ -1,19 +1,12 @@
 ---
 title: "Crawl Budget Là Gì? Hướng Dẫn Toàn Diện Để Tối Ưu Cho SEO (2025)"
 slug: crawl-budget-la-gi
-permalink: /phan-tich/crawl-budget-la-gi/
+permalink: /technical-seo/crawl-budget-la-gi/
 description: "Crawl budget là gì và tại sao nó quyết định trang nào của bạn được Google index? Hướng dẫn đầy đủ từ cơ chế hoạt động đến cách tối ưu thực tế — kèm góc nhìn phân tích chuyên sâu ít ai đề cập."
 date: 2025-01-01
 readTime: "14 phút"
-track: phan-tich
-track_label: "Phân Tích"
-tags:
-  - crawl-budget
-  - technical-seo
-  - googlebot
-  - seo-co-ban
-  - toi-uu-seo
-pillar: true
+category: technical-seo
+format: deep-dive
 featured: true
 ---
 

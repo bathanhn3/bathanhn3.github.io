@@ -1,169 +1,177 @@
 ---
 layout: default
-title: Thành Labs
-description: Học. Xây dựng. Giải thích. Blog cá nhân về code, SEO, AI và hành trình build in public.
+title: "Thanh · SEO Specialist | Technical SEO & Content Strategy"
+description: "SEO specialist chuyên technical SEO, content strategy, và AI visibility. Founder agrowth.io. Ghi chép từ việc tự làm SEO thật."
 permalink: /
 ---
-{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' %}
-{% assign featured_posts = tracked_posts | where_exp: 'post', 'post.pillar == true' %}
-{% assign latest_posts = tracked_posts | sort: 'date' | reverse %}
-{% assign build_posts = tracked_posts | where: 'track', 'xay-dung' %}
 
+{% assign featured_posts = site.posts | where: 'featured', true | sort: 'date' | reverse %}
+
+<!-- HERO -->
 <section class="hero-home">
-  <div class="container hero-grid">
-    <div>
-      <p class="eyebrow">Thành Labs</p>
-      <h1 class="hero-title">Thành Labs</h1>
-      <p class="hero-tagline">Học. Xây dựng. Giải thích.</p>
-      <p class="hero-description">Nơi Thành học công nghệ từ số 0, build dự án thật và giải thích lại theo cách dễ hiểu nhất. Đây là trang trung tâm điều hướng toàn bộ hệ thống kiến thức về code, SEO và AI.</p>
+  <div class="container">
+    <p class="eyebrow">SEO SPECIALIST · TECHNICAL · CONTENT · AI</p>
+    <h1 class="hero-title">Tôi nghiên cứu cách search engine và AI hoạt động — rồi viết lại những gì tôi tìm được</h1>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="{{ '/hoc/' | relative_url }}">Bắt đầu học</a>
-        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">Khám phá bài viết</a>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-num">{{ site.stats.articles }}</span>
+        <span class="stat-label">Bài phân tích</span>
       </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ site.stats.experiments }}</span>
+        <span class="stat-label">Experiments</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-num">{{ site.stats.newsletter }}</span>
+        <span class="stat-label">Newsletter subs</span>
+      </div>
+    </div>
 
-      <form class="site-search hero-search" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get">
-        <label class="visually-hidden" for="hero-search">Tìm bài viết</label>
-        <input id="hero-search" type="search" name="q" placeholder="Tìm: API, Python, SEO, AI..." autocomplete="off" data-search-input>
-        <div class="search-results" data-search-results></div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="{{ '/kien-thuc/' | relative_url }}">Đọc bài mới nhất</a>
+      <a class="btn btn-secondary" href="{{ '/lab/' | relative_url }}">Xem Lab →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOPIC MAP -->
+<section class="section section--topic-map">
+  <div class="container">
+    <p class="eyebrow">Tôi viết về</p>
+    <h2>Chủ đề</h2>
+    <p class="section-sub">Bấm để xem bài theo chủ đề</p>
+    <div class="topic-map">
+      <a class="topic-pill topic-pill--blue" href="{{ '/kien-thuc/' | relative_url }}?category=technical-seo">Technical SEO</a>
+      <a class="topic-pill topic-pill--teal" href="{{ '/kien-thuc/' | relative_url }}?category=content-strategy">Content strategy</a>
+      <a class="topic-pill topic-pill--amber" href="{{ '/kien-thuc/' | relative_url }}?category=seo-automation">SEO automation</a>
+      <a class="topic-pill topic-pill--purple" href="{{ '/kien-thuc/' | relative_url }}?category=ai-seo">AI &amp; LLM visibility</a>
+      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=shopify-seo">Shopify SEO</a>
+      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=crawling-indexing">Crawling &amp; indexing</a>
+      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=topical-authority">Topical authority</a>
+    </div>
+  </div>
+</section>
+
+<!-- LAB -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Lab</p>
+    <h2>agrowth.io là nơi tôi test mọi thứ trước khi viết về nó</h2>
+    <div class="lab-grid">
+      {% for exp in site.data.lab limit: 3 %}
+      <article class="lab-card">
+        <div class="lab-card-top">
+          {% if exp.status == 'live' %}
+          <span class="status-badge status-badge--live">✓ Live</span>
+          {% elsif exp.status == 'running' %}
+          <span class="status-badge status-badge--running">● Đang chạy</span>
+          {% else %}
+          <span class="status-badge status-badge--planned">○ Kế hoạch</span>
+          {% endif %}
+        </div>
+        <h3>{{ exp.title }}</h3>
+        <p class="lab-hypothesis">{{ exp.hypothesis }}</p>
+        {% if exp.result %}
+        <p class="lab-result">{{ exp.result }}</p>
+        {% endif %}
+        {% if exp.started %}
+        <p class="lab-meta">Bắt đầu: {{ exp.started }}{% if exp.expected %} · Dự kiến: {{ exp.expected }}{% endif %}</p>
+        {% endif %}
+        {% if exp.related_post != '' and exp.related_post %}
+        <a class="lab-link" href="{{ exp.related_post }}">Đọc bài liên quan →</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+    <p style="margin-top: 1.2rem;"><a class="btn btn-secondary" href="{{ '/lab/' | relative_url }}">Xem tất cả →</a></p>
+  </div>
+</section>
+
+<!-- TEARDOWNS -->
+<section class="section section--alt">
+  <div class="container">
+    <p class="eyebrow">Teardowns</p>
+    <h2>Tôi mổ xẻ các SEO strategy đáng học hỏi</h2>
+    <div class="teardown-featured">
+      <p class="teardown-label">TEARDOWN #01</p>
+      <h3>Shopify Blog: Cách một thương hiệu e-commerce build topical authority từ số 0</h3>
+      <div class="teardown-topics">
+        <span class="topic-tag">topical-authority</span>
+        <span class="topic-tag">internal-linking</span>
+        <span class="topic-tag">content-velocity</span>
+      </div>
+      <a class="btn btn-secondary" href="{{ '/teardowns/' | relative_url }}" style="margin-top: 1rem; display: inline-flex;">Sắp ra mắt →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLES -->
+<section class="section">
+  <div class="container">
+    <p class="eyebrow">Bài viết nổi bật</p>
+    <h2>Bài viết nên đọc trước</h2>
+    <ul class="article-list">
+      {% for post in featured_posts limit: 4 %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">{{ post.category | default: 'Technical SEO' }}</span>
+          {% if post.format %}
+          <span class="article-format">{{ post.format }}</span>
+          {% endif %}
+        </div>
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+      </li>
+      {% endfor %}
+    </ul>
+    <p style="margin-top: 1.2rem;"><a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">Xem tất cả bài viết →</a></p>
+  </div>
+</section>
+
+<!-- AI CITATION SIGNAL -->
+<section class="ai-citation-bar">
+  <div class="container">
+    <span class="ai-citation-text">Nội dung trên site này được tham chiếu bởi</span>
+    {% for citation in site.ai_citations %}
+    <span class="ai-citation-pill">{{ citation.name }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="section" id="newsletter">
+  <div class="container newsletter-grid">
+    <div>
+      <p class="eyebrow">SEO Notes</p>
+      <h2>Newsletter</h2>
+      <p>Mỗi 2 tuần: 1 experiment từ Lab + 1 bài phân tích. Không có gì khác.</p>
+      {% if site.newsletter_count != '' %}
+      <p class="newsletter-count">{{ site.newsletter_count }} subscribers</p>
+      {% endif %}
+    </div>
+    <div class="newsletter-form-wrap">
+      <form class="newsletter-form" action="{{ site.newsletter_url | default: '#' }}" method="post">
+        <input type="email" name="email" placeholder="email@example.com" required>
+        <button type="submit" class="btn btn-primary">Đăng ký →</button>
       </form>
     </div>
-
-    <aside class="hero-card">
-      <h2>Khái niệm cốt lõi</h2>
-      <ul>
-        <li>Học: học từ cơ bản đến nâng cao, ghi lại bài học thật.</li>
-        <li>Xây dựng: làm dự án và công cụ thực tế, chia sẻ quá trình.</li>
-        <li>Giải thích: biến khái niệm khó thành ví dụ dễ hiểu.</li>
-      </ul>
-    </aside>
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Giới thiệu</p>
-    <h2>Thành là ai?</h2>
-    <p>Mình không xây blog này theo kiểu giáo trình hay bản tin công nghệ. Mục tiêu là build một nơi để học, ghi chép và chia sẻ lại cách mình đã hiểu được vấn đề trong code, SEO, AI thông qua trải nghiệm thật.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Trung tâm nội dung</p>
-    <h2>5 tuyến nội dung chính</h2>
-    <div class="card-grid">
-      <a class="card card-link" href="{{ '/hoc/' | relative_url }}">
-        <h3>Thành học</h3>
-        <p>Học code, SEO, AI từ số 0 và rút kinh nghiệm từ những lần làm sai.</p>
-      </a>
-      <a class="card card-link" href="{{ '/giai-thich/' | relative_url }}">
-        <h3>Thành giải thích</h3>
-        <p>Giải thích concept như API, HTTP, Python bằng ngôn ngữ đơn giản.</p>
-      </a>
-      <a class="card card-link" href="{{ '/xay-dung/' | relative_url }}">
-        <h3>Thành xây dựng</h3>
-        <p>Dự án, công cụ và tự động hóa theo hướng build in public.</p>
-      </a>
-      <a class="card card-link" href="{{ '/phan-tich/' | relative_url }}">
-        <h3>Thành phân tích</h3>
-        <p>Phân tích sâu cách hệ thống vận hành: crawl, API, kiến trúc.</p>
-      </a>
-      <a class="card card-link" href="{{ '/goc-nhin/' | relative_url }}">
-        <h3>Thành góc nhìn</h3>
-        <p>Mindset, góc nhìn và những câu chuyện cá nhân trên hành trình học.</p>
-      </a>
+<!-- ABOUT -->
+<section class="section section--alt">
+  <div class="container about-mini">
+    <div class="about-avatar">T</div>
+    <div>
+      <h2>Thành Nguyễn Bá</h2>
+      <p>SEO Strategist với 4+ năm kinh nghiệm về technical SEO, content strategy, và AI-assisted growth. Founder <a href="{{ site.author.agrowth_url }}" target="_blank" rel="noopener">agrowth.io</a>. Tôi dùng site này để ghi chép công khai những gì học được từ việc tự làm SEO thật.</p>
+      <div class="about-links">
+        <a class="about-pill about-pill--blue" href="{{ site.author.agrowth_url }}" target="_blank" rel="noopener">agrowth.io ↗</a>
+        <a class="about-pill about-pill--gray" href="{{ site.author.linkedin_url }}" target="_blank" rel="noopener">LinkedIn ↗</a>
+      </div>
     </div>
   </div>
 </section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Lộ trình học</p>
-    <h2>Lộ trình từ số 0 đến build được thứ thật</h2>
-    <p>Lộ trình được thiết kế để người mới đi từng bước rõ ràng thay vì học lan man.</p>
-
-    <div class="path-grid">
-      <article class="path-step">
-        <span class="step-number">01</span>
-        <h3>Nền tảng</h3>
-        <p>Hiểu biến, hàm, cấu trúc dữ liệu và HTTP cơ bản.</p>
-      </article>
-      <article class="path-step">
-        <span class="step-number">02</span>
-        <h3>Tự động hóa</h3>
-        <p>Bắt đầu viết script Python và làm workflow SEO nhỏ.</p>
-      </article>
-      <article class="path-step">
-        <span class="step-number">03</span>
-        <h3>Tư duy hệ thống</h3>
-        <p>Học cách ghép API, luồng dữ liệu, monitoring và debug.</p>
-      </article>
-      <article class="path-step">
-        <span class="step-number">04</span>
-        <h3>Xây dựng công khai</h3>
-        <p>Đóng gói thành dự án thật, xuất bản và nhận phản hồi.</p>
-      </article>
-    </div>
-
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Bài nổi bật</p>
-    <h2>Pillar bài viết nên đọc trước</h2>
-    <ul class="post-list">
-      {% for post in featured_posts limit: 6 %}
-      <li>
-        <div class="post-item-top">
-          <span class="post-track">{{ post.track_label }}</span>
-          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
-        </div>
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        <p>{{ post.description }}</p>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Xây dựng</p>
-    <h2>Dự án và công cụ đã làm</h2>
-    <div class="card-grid card-grid--three">
-      {% for post in build_posts limit: 3 %}
-      <article class="card">
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        <p>{{ post.description }}</p>
-      </article>
-      {% endfor %}
-    </div>
-    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/xay-dung/' | relative_url }}">Đi tới hub Xây dựng</a></p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Bài mới nhất</p>
-    <h2>Bài viết mới nhất</h2>
-    <ul class="post-list">
-      {% for post in latest_posts limit: 6 %}
-      <li>
-        <div class="post-item-top">
-          <span class="post-track">{{ post.track_label }}</span>
-          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
-        </div>
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-        <p>{{ post.description }}</p>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
-
-
 
 <script type="application/ld+json">
 {
@@ -171,6 +179,11 @@ permalink: /
   "@type": "WebSite",
   "name": "{{ site.title }}",
   "description": {{ site.description | jsonify }},
-  "url": "{{ '/' | absolute_url }}"
+  "url": "{{ '/' | absolute_url }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ site.author.name }}",
+    "jobTitle": "{{ site.author.role }}"
+  }
 }
 </script>

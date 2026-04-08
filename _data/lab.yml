@@ -1,0 +1,18 @@
+- title: "CTR optimization qua title tag A/B test"
+  status: live
+  hypothesis: "Thay đổi cấu trúc title tag theo dạng [keyword] + [benefit] sẽ tăng CTR trên SERP so với dạng mô tả thông thường."
+  result: "+18% CTR sau 6 tuần"
+  started: "2026-01"
+  related_post: ""
+
+- title: "Internal linking structure và crawl depth"
+  status: running
+  hypothesis: "Giảm crawl depth xuống còn tối đa 3 click từ homepage sẽ tăng tốc độ index cho các trang danh mục."
+  expected: "2026-06"
+  started: "2026-03"
+  related_post: "/technical-seo/crawl-budget-la-gi/"
+
+- title: "Schema markup và tỷ lệ AI citation"
+  status: planned
+  hypothesis: "Bổ sung structured data (Article, FAQPage) sẽ tăng khả năng nội dung được trích dẫn bởi AI như ChatGPT và Perplexity."
+  related_post: ""

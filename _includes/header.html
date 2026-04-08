@@ -1,7 +1,7 @@
-﻿<header class="site-header">
+<header class="site-header">
   <div class="container header-shell">
     <div class="brand-row">
-      <a class="logo" href="{{ '/' | relative_url }}">Thành Labs</a>
+      <a class="logo" href="{{ '/' | relative_url }}">Thanh <span class="logo-dot">·</span> SEO</a>
       <div class="brand-actions">
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">Dark mode</button>
         <button class="menu-toggle" type="button" data-menu-toggle aria-label="Open menu" aria-expanded="false">
@@ -13,27 +13,15 @@
     </div>
 
     <div class="nav-drawer" data-nav-drawer>
-      <div class="header-tools">
-        <form class="site-search site-search--compact" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get">
-          <label class="visually-hidden" for="header-search">Search articles</label>
-          <input id="header-search" type="search" name="q" placeholder="Search article..." autocomplete="off" data-search-input>
-          <div class="search-results" data-search-results></div>
-        </form>
-
-        <nav class="secondary-nav" aria-label="Secondary navigation">
-          <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>Blog</a>
-          <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about/' %}aria-current="page"{% endif %}>About</a>
-        </nav>
-      </div>
-
       <nav class="primary-nav" aria-label="Main navigation">
-        <a href="{{ '/hoc/' | relative_url }}" {% if page.url contains '/hoc/' %}aria-current="page"{% endif %}>Học</a>
-        <a href="{{ '/xay-dung/' | relative_url }}" {% if page.url contains '/xay-dung/' %}aria-current="page"{% endif %}>Xây dựng</a>
-        <a href="{{ '/giai-thich/' | relative_url }}" {% if page.url contains '/giai-thich/' %}aria-current="page"{% endif %}>Giải thích</a>
-        <a href="{{ '/phan-tich/' | relative_url }}" {% if page.url contains '/phan-tich/' %}aria-current="page"{% endif %}>Phân tích</a>
-        <a href="{{ '/goc-nhin/' | relative_url }}" {% if page.url contains '/goc-nhin/' %}aria-current="page"{% endif %}>Góc nhìn</a>
+        <a href="{{ '/kien-thuc/' | relative_url }}" {% if page.url contains '/kien-thuc/' or page.url contains '/technical-seo/' %}aria-current="page"{% endif %}>Kiến thức</a>
+        <a href="{{ '/lab/' | relative_url }}" {% if page.url contains '/lab/' %}aria-current="page"{% endif %}>Lab</a>
+        <a href="{{ '/teardowns/' | relative_url }}" {% if page.url contains '/teardowns/' %}aria-current="page"{% endif %}>Teardowns</a>
+        <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about/' %}aria-current="page"{% endif %}>Về tôi</a>
       </nav>
+      <div class="header-cta">
+        <a class="btn btn-nav-cta" href="{{ site.newsletter_url | default: '#newsletter' }}">Newsletter</a>
+      </div>
     </div>
   </div>
 </header>
-

@@ -1,0 +1,76 @@
+---
+layout: default
+title: "Lab — agrowth.io experiments"
+description: "Phòng thí nghiệm công khai: các SEO experiments đang chạy trên agrowth.io, với hypothesis và kết quả thực tế."
+permalink: /lab/
+---
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">Lab</p>
+    <h1>Phòng thí nghiệm công khai</h1>
+    <p>agrowth.io là nơi tôi test mọi thứ trước khi viết về nó. Mỗi experiment có hypothesis rõ ràng, timeline cụ thể, và kết quả được công bố thật — dù tốt hay xấu.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container">
+    <div class="lab-filter-tabs" id="lab-filters">
+      <button class="filter-tab is-active" data-filter="all">Tất cả</button>
+      <button class="filter-tab" data-filter="live">Live</button>
+      <button class="filter-tab" data-filter="running">Đang chạy</button>
+      <button class="filter-tab" data-filter="planned">Kế hoạch</button>
+    </div>
+
+    <div class="lab-grid lab-grid--full" id="lab-list">
+      {% for exp in site.data.lab %}
+      <article class="lab-card" data-status="{{ exp.status }}">
+        <div class="lab-card-top">
+          {% if exp.status == 'live' %}
+          <span class="status-badge status-badge--live">✓ Live</span>
+          {% elsif exp.status == 'running' %}
+          <span class="status-badge status-badge--running">● Đang chạy</span>
+          {% else %}
+          <span class="status-badge status-badge--planned">○ Kế hoạch</span>
+          {% endif %}
+        </div>
+        <h3>{{ exp.title }}</h3>
+        <p class="lab-hypothesis"><strong>Hypothesis:</strong> {{ exp.hypothesis }}</p>
+        {% if exp.result %}
+        <p class="lab-result">Kết quả: {{ exp.result }}</p>
+        {% endif %}
+        {% if exp.started %}
+        <p class="lab-meta">
+          Bắt đầu: {{ exp.started }}
+          {% if exp.expected %} · Dự kiến kết quả: {{ exp.expected }}{% endif %}
+        </p>
+        {% endif %}
+        {% if exp.related_post != '' and exp.related_post %}
+        <a class="lab-link" href="{{ exp.related_post }}">Đọc bài liên quan →</a>
+        {% endif %}
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var tabs = document.querySelectorAll('.filter-tab');
+  var cards = document.querySelectorAll('.lab-card');
+  tabs.forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      tabs.forEach(function(t) { t.classList.remove('is-active'); });
+      tab.classList.add('is-active');
+      var filter = tab.dataset.filter;
+      cards.forEach(function(card) {
+        if (filter === 'all' || card.dataset.status === filter) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>

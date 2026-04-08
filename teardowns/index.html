@@ -1,0 +1,50 @@
+---
+layout: default
+title: "Teardowns — SEO Strategy Analysis"
+description: "Tôi mổ xẻ các SEO strategy đáng học hỏi — từ cách build topical authority đến internal linking và content velocity."
+permalink: /teardowns/
+---
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">Teardowns</p>
+    <h1>Tôi mổ xẻ các SEO strategy đáng học hỏi</h1>
+    <p>Phân tích cách các site/thương hiệu đang làm SEO — những thứ người khác không thấy. Không phải lý thuyết, chỉ là quan sát thực tế.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container">
+    {% assign teardown_posts = site.posts | where: 'category', 'teardown' | sort: 'date' | reverse %}
+    {% if teardown_posts.size > 0 %}
+    <ul class="article-list article-list--full">
+      {% for post in teardown_posts %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">Teardown</span>
+          {% if post.subject %}<span class="article-format">{{ post.subject }}</span>{% endif %}
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+        </div>
+        <h2 class="article-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.description %}
+        <p class="article-desc">{{ post.description }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <div class="teardown-coming">
+      <div class="teardown-featured">
+        <p class="teardown-label">TEARDOWN #01</p>
+        <h2>Shopify Blog: Cách một thương hiệu e-commerce build topical authority từ số 0</h2>
+        <div class="teardown-topics">
+          <span class="topic-tag">topical-authority</span>
+          <span class="topic-tag">internal-linking</span>
+          <span class="topic-tag">content-velocity</span>
+        </div>
+        <p style="margin-top: 1rem; color: var(--muted);">Đang viết — sắp ra mắt.</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>

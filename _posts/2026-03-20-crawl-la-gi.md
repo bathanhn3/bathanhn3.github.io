@@ -1,17 +1,12 @@
 ---
 title: "Crawl Là Gì? Toàn Bộ Sự Thật Về Cách Google Đọc Website Của Bạn"
 slug: "crawl-la-gi"
-permalink: /phan-tich/crawl-la-gi/
+permalink: /technical-seo/crawl-la-gi/
 description: "Crawl là gì và tại sao đây là bước sống còn trước khi SEO có thể phát huy tác dụng? Hướng dẫn đầy đủ về cơ chế crawl, crawl budget, các lỗi thường gặp và cách kiểm soát bot — kèm phân tích thực tế."
 date: 2026-03-20
 readTime: "10 min read"
-track: phan-tich
-track_label: "Phân Tích"
-tags:
-  - seo
-  - technical-seo
-  - crawl
-pillar: true
+category: technical-seo
+format: deep-dive
 featured: true
 ---
 

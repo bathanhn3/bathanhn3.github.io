@@ -1,0 +1,38 @@
+---
+layout: default
+title: "Kiến thức SEO"
+description: "Tất cả bài viết về technical SEO, content strategy, AI visibility và hơn thế nữa."
+permalink: /kien-thuc/
+---
+
+{% assign all_posts = site.posts | sort: 'date' | reverse %}
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">Kiến thức</p>
+    <h1>Bài viết SEO</h1>
+    <p>Phân tích chuyên sâu về technical SEO, content strategy, và AI visibility — viết từ góc nhìn của người tự làm SEO thật.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container">
+    <ul class="article-list article-list--full">
+      {% for post in all_posts %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">{{ post.category | default: 'technical-seo' | replace: '-', ' ' | capitalize }}</span>
+          {% if post.format %}
+          <span class="article-format">{{ post.format }}</span>
+          {% endif %}
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+        </div>
+        <h2 class="article-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.description %}
+        <p class="article-desc">{{ post.description }}</p>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

@@ -1,34 +1,8 @@
 ---
 layout: default
 ---
-{% assign track_slug = page.track | default: 'blog' %}
-{% case track_slug %}
-  {% when 'hoc' %}
-    {% assign track_label = 'Thành học' %}
-  {% when 'learn' %}
-    {% assign track_label = 'Thành học' %}
-  {% when 'giai-thich' %}
-    {% assign track_label = 'Thành giải thích' %}
-  {% when 'explain' %}
-    {% assign track_label = 'Thành giải thích' %}
-  {% when 'xay-dung' %}
-    {% assign track_label = 'Thành xây dựng' %}
-  {% when 'build' %}
-    {% assign track_label = 'Thành build' %}
-  {% when 'phan-tich' %}
-    {% assign track_label = 'Thành phân tích' %}
-  {% when 'breakdown' %}
-    {% assign track_label = 'Thành breakdown' %}
-  {% when 'goc-nhin' %}
-    {% assign track_label = 'Thành góc nhìn' %}
-  {% when 'vibes' %}
-    {% assign track_label = 'Thành vibes' %}
-  {% else %}
-    {% assign track_label = 'Blog' %}
-{% endcase %}
-
-{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' %}
-{% assign related_posts = tracked_posts | where: 'track', page.track | where_exp: 'post', 'post.url != page.url' %}
+{% assign all_posts = site.posts | sort: 'date' | reverse %}
+{% assign related_posts = all_posts | where: 'category', page.category | where_exp: 'post', 'post.url != page.url' %}
 
 <article class="post-page">
   <header class="post-header">
@@ -36,8 +10,21 @@ layout: default
       <p class="eyebrow">
         <a href="{{ '/' | relative_url }}">Home</a>
         <span>/</span>
-        <a href="{{ '/' | relative_url }}{{ track_slug }}/">{{ track_label }}</a>
+        <a href="{{ '/kien-thuc/' | relative_url }}">Kiến thức</a>
+        {% if page.category %}
+        <span>/</span>
+        <span>{{ page.category | replace: '-', ' ' | capitalize }}</span>
+        {% endif %}
       </p>
+
+      <div class="post-header-top">
+        {% if page.category %}
+        <span class="post-category-badge">{{ page.category | replace: '-', ' ' | upcase }}</span>
+        {% endif %}
+        {% if page.format %}
+        <span class="post-format-badge">{{ page.format }}</span>
+        {% endif %}
+      </div>
 
       <h1>{{ page.title }}</h1>
       {% if page.description %}
@@ -47,14 +34,14 @@ layout: default
       <div class="post-meta">
         <span>{{ page.date | date: '%d/%m/%Y' }}</span>
         <span>{{ page.readTime | default: '8 min read' }}</span>
-        <span>{{ page.author | default: site.author }}</span>
+        <span>{{ page.author | default: site.author.name }}</span>
       </div>
     </div>
   </header>
 
   <div class="container post-layout">
     <aside class="post-toc">
-      <h2>Muc luc</h2>
+      <h2>Mục lục</h2>
       <ul id="toc-list"></ul>
     </aside>
 
@@ -62,13 +49,12 @@ layout: default
       <div id="post-content" class="post-content">
         {{ content }}
       </div>
-
     </div>
   </div>
 
   <section class="related-section">
     <div class="container">
-      <h2>Related posts</h2>
+      <h2>Bài liên quan</h2>
       <div class="card-grid card-grid--three">
         {% for post in related_posts limit: 3 %}
         <article class="card">
@@ -77,8 +63,8 @@ layout: default
         </article>
         {% else %}
         <article class="card">
-          <h3><a href="{{ '/blog/' | relative_url }}">Xem tat ca bai viet</a></h3>
-          <p>Chua co bai lien quan trong cung track. Ban co the mo blog de tiep tuc kham pha.</p>
+          <h3><a href="{{ '/kien-thuc/' | relative_url }}">Xem tất cả bài viết</a></h3>
+          <p>Khám phá thêm các bài viết về SEO.</p>
         </article>
         {% endfor %}
       </div>
@@ -88,44 +74,21 @@ layout: default
   <section class="post-nav-section">
     <div class="container post-nav">
       <div>
-        {% if page.next and page.next.track %}
-        <a class="btn btn-secondary" href="{{ page.next.url | relative_url }}">&larr; Previous post</a>
+        {% if page.next %}
+        <a class="btn btn-secondary" href="{{ page.next.url | relative_url }}">&larr; Bài trước</a>
         {% else %}
-        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">&larr; Back to blog</a>
+        <a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">&larr; Kiến thức</a>
         {% endif %}
       </div>
       <div>
-        {% if page.previous and page.previous.track %}
-        <a class="btn btn-secondary" href="{{ page.previous.url | relative_url }}">Next post &rarr;</a>
+        {% if page.previous %}
+        <a class="btn btn-secondary" href="{{ page.previous.url | relative_url }}">Bài tiếp &rarr;</a>
         {% else %}
-        <a class="btn btn-secondary" href="{{ '/blog/' | relative_url }}">Browse all posts &rarr;</a>
+        <a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">Kiến thức &rarr;</a>
         {% endif %}
       </div>
     </div>
   </section>
-
-  {% if site.giscus_repo != '' and site.giscus_repo_id != '' and site.giscus_category != '' and site.giscus_category_id != '' %}
-  <section class="comments-section">
-    <div class="container">
-      <h2>Discussion</h2>
-      <script src="https://giscus.app/client.js"
-              data-repo="{{ site.giscus_repo }}"
-              data-repo-id="{{ site.giscus_repo_id }}"
-              data-category="{{ site.giscus_category }}"
-              data-category-id="{{ site.giscus_category_id }}"
-              data-mapping="pathname"
-              data-strict="1"
-              data-reactions-enabled="1"
-              data-emit-metadata="0"
-              data-input-position="top"
-              data-theme="preferred_color_scheme"
-              data-lang="vi"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
-  </section>
-  {% endif %}
 </article>
 
 <script type="application/ld+json">
@@ -136,7 +99,7 @@ layout: default
   "description": {{ page.description | default: site.description | jsonify }},
   "author": {
     "@type": "Person",
-    "name": {{ page.author | default: site.author | jsonify }}
+    "name": {{ page.author | default: site.author.name | jsonify }}
   },
   "datePublished": "{{ page.date | date_to_xmlschema }}",
   "dateModified": "{{ page.date | date_to_xmlschema }}",
@@ -147,4 +110,3 @@ layout: default
   "url": "{{ page.url | absolute_url }}"
 }
 </script>
-
