@@ -106,7 +106,6 @@ permalink: /
       </article>
     </div>
 
-    <p style="margin-top: 1rem;"><a class="btn btn-secondary" href="{{ '/roadmap/' | relative_url }}">Xem lộ trình chi tiết</a></p>
   </div>
 </section>
 
@@ -164,43 +163,7 @@ permalink: /
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Tìm kiếm + Thẻ</p>
-    <h2>Tìm nhanh theo chủ đề</h2>
-    <form class="site-search" data-search role="search" action="{{ '/blog/' | relative_url }}" method="get">
-      <label class="visually-hidden" for="hub-search">Tìm theo từ khóa</label>
-      <input id="hub-search" type="search" name="q" placeholder="Nhập từ khóa bạn cần tìm" autocomplete="off" data-search-input>
-      <div class="search-results" data-search-results></div>
-    </form>
 
-    <div class="tag-row">
-      {% assign shown_tag = 0 %}
-      {% for tag in site.tags %}
-        {% assign tagged_posts = tag[1] | where_exp: 'post', 'post.track' %}
-        {% if tagged_posts.size > 0 and shown_tag < 12 %}
-          <a class="tag-pill" href="{{ '/tags/' | relative_url }}{{ tag[0] | slugify }}/">#{{ tag[0] }} ({{ tagged_posts.size }})</a>
-          {% assign shown_tag = shown_tag | plus: 1 %}
-        {% endif %}
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Đăng ký</p>
-    <h2>Đăng ký nhận bài mới</h2>
-    <div class="subscribe-card">
-      <p>Mình gửi email khi có bài mới về code, SEO, AI và những cập nhật từ hành trình build in public.</p>
-      <form class="subscribe-form" action="{{ site.subscribe_url }}" method="post" target="popupwindow" onsubmit="window.open('https://buttondown.email/thanh-labs', 'popupwindow')">
-        <label class="visually-hidden" for="subscriber-email">Email</label>
-        <input id="subscriber-email" type="email" name="email" placeholder="you@example.com" required>
-        <button class="btn btn-primary" type="submit">Đăng ký</button>
-      </form>
-    </div>
-  </div>
-</section>
 
 <script type="application/ld+json">
 {

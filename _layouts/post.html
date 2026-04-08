@@ -63,13 +63,6 @@ layout: default
         {{ content }}
       </div>
 
-      {% if page.tags and page.tags.size > 0 %}
-      <div class="post-tags-inline">
-        {% for tag in page.tags %}
-        <a class="tag-pill" href="{{ '/tags/' | relative_url }}{{ tag | slugify }}/">#{{ tag }}</a>
-        {% endfor %}
-      </div>
-      {% endif %}
     </div>
   </div>
 

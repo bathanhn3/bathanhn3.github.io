@@ -11,8 +11,6 @@ Blog ca nhan ve cong nghe theo huong **Learn - Build - Explain**.
 - `/phan-tich/`
 - `/goc-nhin/`
 - `/blog/`
-- `/roadmap/`
-- `/tags/`
 
 ## Tech
 

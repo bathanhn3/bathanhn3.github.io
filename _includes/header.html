@@ -22,8 +22,6 @@
 
         <nav class="secondary-nav" aria-label="Secondary navigation">
           <a href="{{ '/blog/' | relative_url }}" {% if page.url contains '/blog/' %}aria-current="page"{% endif %}>Blog</a>
-          <a href="{{ '/roadmap/' | relative_url }}" {% if page.url contains '/roadmap/' %}aria-current="page"{% endif %}>Roadmap</a>
-          <a href="{{ '/tags/' | relative_url }}" {% if page.url contains '/tags/' %}aria-current="page"{% endif %}>Tags</a>
           <a href="{{ '/about/' | relative_url }}" {% if page.url contains '/about/' %}aria-current="page"{% endif %}>About</a>
         </nav>
       </div>

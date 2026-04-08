@@ -6,7 +6,7 @@ description: "Crawl là gì và tại sao đây là bước sống còn trước
 date: 2026-03-20
 readTime: "10 min read"
 track: phan-tich
-track_label: "Thanh phan tich"
+track_label: "Phân Tích"
 tags:
   - seo
   - technical-seo
