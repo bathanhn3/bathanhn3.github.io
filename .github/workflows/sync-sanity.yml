@@ -1,0 +1,41 @@
+name: Sync Sanity posts
+
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types:
+      - sanity-publish
+  schedule:
+    - cron: '*/30 * * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Sync posts from Sanity
+        run: node scripts/sync-sanity-posts.mjs
+
+      - name: Commit synced posts
+        run: |
+          if git diff --quiet; then
+            echo "No Sanity post changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _posts
+          git commit -m "Sync Sanity posts"
+          git push
