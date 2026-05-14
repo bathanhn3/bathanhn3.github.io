@@ -1,12 +1,18 @@
 ---
-layout: post
+layout: "post"
 title: "Crawl Budget Là Gì? (Sanity)"
 slug: crawl-budget-la-gi-sanity
 permalink: /crawl-budget-la-gi-sanity/
 description: "Một site ecommerce bán đồ ngoài trời có 50.000 trang sản phẩm. Googlebot crawl đều đặn khoảng 200.000 requests mỗi ngày — nghe có vẻ nhiều. Nhưng kết quả audit cho thấy Google c..."
 date: 2026-05-14
-author: Thanh
+readTime: 8
 category: technical-seo
+track: phan-tich
+track_label: "Phân Tích"
+tags: []
+pillar: false
+featured: false
+author: Thanh
 sanity_id: "52f0be08-781f-4ea4-a9cd-4e817d0bf3c7"
 sanity_updated_at: "2026-05-14T08:09:12Z"
 ---

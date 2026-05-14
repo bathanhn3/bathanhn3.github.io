@@ -1,4 +1,4 @@
-import {existsSync, mkdirSync, readdirSync, readFileSync, renameSync, unlinkSync, writeFileSync} from 'node:fs'
+import {existsSync, mkdirSync, readdirSync, readFileSync, renameSync, writeFileSync} from 'node:fs'
 import path from 'node:path'
 
 const projectId = process.env.SANITY_PROJECT_ID || 'zscb93sq'
@@ -10,10 +10,20 @@ const query = `*[_type == "post" && defined(slug.current)] | order(coalesce(publ
   _id,
   _createdAt,
   _updatedAt,
+  layout,
   title,
   "slug": slug.current,
+  permalink,
   publishedAt,
+  description,
   excerpt,
+  readTime,
+  category,
+  track,
+  trackLabel,
+  tags,
+  pillar,
+  featured,
   body
 }`
 
@@ -66,20 +76,32 @@ for (const post of posts) {
 console.log(`Sanity sync complete. Posts fetched: ${posts.length}. Files changed: ${written}. Skipped: ${skipped}.`)
 
 function buildMarkdown(post, date) {
-  const description = post.excerpt || firstText(post.body) || ''
+  const description = post.description || post.excerpt || firstText(post.body) || ''
   const body = portableTextToMarkdown(post.body)
+  const permalink = normalizePermalink(post.permalink || `/${post.slug}/`)
+  const frontMatter = [
+    ['layout', yamlString(post.layout || 'post')],
+    ['title', yamlString(post.title)],
+    ['slug', post.slug],
+    ['permalink', permalink],
+    ['description', yamlString(description)],
+    ['date', date],
+    ['readTime', numberOrDefault(post.readTime, 8)],
+    ['category', post.category || 'technical-seo'],
+    ['track', post.track || 'phan-tich'],
+    ['track_label', yamlString(post.trackLabel || 'Phân Tích')],
+    ['tags', yamlArray(post.tags || [])],
+    ['pillar', booleanOrDefault(post.pillar, false)],
+    ['featured', booleanOrDefault(post.featured, false)],
+    ['author', 'Thanh'],
+    ['sanity_id', yamlString(post._id)],
+    ['sanity_updated_at', yamlString(post._updatedAt || '')],
+  ]
+    .map(([key, value]) => `${key}: ${value}`)
+    .join('\n')
 
   return `---
-layout: post
-title: ${yamlString(post.title)}
-slug: ${post.slug}
-permalink: /${post.slug}/
-description: ${yamlString(description)}
-date: ${date}
-author: Thanh
-category: technical-seo
-sanity_id: ${yamlString(post._id)}
-sanity_updated_at: ${yamlString(post._updatedAt || '')}
+${frontMatter}
 ---
 
 ${body}
@@ -181,6 +203,30 @@ function toDateOnly(value) {
 
 function yamlString(value) {
   return JSON.stringify(String(value || ''))
+}
+
+function yamlArray(values) {
+  const cleanValues = values.map((value) => String(value || '').trim()).filter(Boolean)
+  return `[${cleanValues.map((value) => yamlString(value)).join(', ')}]`
+}
+
+function numberOrDefault(value, fallback) {
+  return Number.isFinite(value) ? value : fallback
+}
+
+function booleanOrDefault(value, fallback) {
+  return typeof value === 'boolean' ? value : fallback
+}
+
+function normalizePermalink(value) {
+  const permalink = String(value || '').trim()
+
+  if (!permalink) {
+    return '/'
+  }
+
+  const withLeadingSlash = permalink.startsWith('/') ? permalink : `/${permalink}`
+  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`
 }
 
 function findExistingSanityPost(id) {
