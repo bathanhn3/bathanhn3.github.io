@@ -71,7 +71,7 @@
           '"><strong>' +
           item.title +
           '</strong><small>' +
-          (item.track_label || item.track || 'Blog') +
+          (item.category_label || item.category || 'Blog') +
           ' - ' +
           (item.description || '').slice(0, 120) +
           '</small></a></li>'
@@ -115,9 +115,8 @@
         var haystack = normalize([
           item.title,
           item.description,
-          item.track,
-          item.track_label,
-          item.tags
+          item.category,
+          item.category_label
         ].join(' '));
 
         return terms.every(function (term) {

@@ -10,7 +10,7 @@
   hypothesis: "Giảm crawl depth xuống còn tối đa 3 click từ homepage sẽ tăng tốc độ index cho các trang danh mục."
   expected: "2026-06"
   started: "2026-03"
-  related_post: "/technical-seo/crawl-budget-la-gi/"
+  related_post: "/seo/crawl-budget-la-gi/"
 
 - title: "Schema markup và tỷ lệ AI citation"
   status: planned

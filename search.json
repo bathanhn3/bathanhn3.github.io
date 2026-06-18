@@ -3,15 +3,16 @@ layout: null
 permalink: /search.json
 ---
 [
-{% assign tracked_posts = site.posts | where_exp: 'post', 'post.track' | sort: 'date' | reverse %}
-{% for post in tracked_posts %}
+{% assign indexed_posts = site.posts | sort: 'date' | reverse %}
+{% for post in indexed_posts %}
+  {% assign category_key = post.categories | first | default: 'seo' %}
+  {% assign hub = site.data.content_hubs[category_key] %}
   {
     "title": {{ post.title | jsonify }},
     "description": {{ post.description | default: '' | jsonify }},
     "url": {{ post.url | relative_url | jsonify }},
-    "track": {{ post.track | default: '' | jsonify }},
-    "track_label": {{ post.track_label | default: '' | jsonify }},
-    "tags": {{ post.tags | join: ', ' | jsonify }},
+    "category": {{ category_key | jsonify }},
+    "category_label": {{ hub.label | default: category_key | jsonify }},
     "date": "{{ post.date | date: '%Y-%m-%d' }}"
   }{% unless forloop.last %},{% endunless %}
 {% endfor %}

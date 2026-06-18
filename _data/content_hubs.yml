@@ -1,0 +1,23 @@
+seo:
+  label: "Làm SEO"
+  eyebrow: "SEO"
+  title: "Làm SEO"
+  description: "Các bài phân tích và hướng dẫn thực tế về technical SEO, content strategy, crawling, indexing và tăng trưởng organic."
+  url: "/seo/"
+  empty: "Các bài SEO mới đang được cập nhật."
+
+ai:
+  label: "AI"
+  eyebrow: "AI"
+  title: "AI"
+  description: "Ghi chép về AI, LLM visibility, workflow tự động hóa và cách AI đang thay đổi cách làm nội dung."
+  url: "/ai/"
+  empty: "Các bài AI mới đang được cập nhật."
+
+tin-cong-nghe:
+  label: "Tin công nghệ"
+  eyebrow: "Tech"
+  title: "Tin công nghệ"
+  description: "Những cập nhật công nghệ đáng chú ý, được chọn lọc theo góc nhìn làm SEO, sản phẩm và tăng trưởng."
+  url: "/tin-cong-nghe/"
+  empty: "Các bài tin công nghệ mới đang được cập nhật."

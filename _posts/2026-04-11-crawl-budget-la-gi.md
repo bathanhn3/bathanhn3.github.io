@@ -2,15 +2,11 @@
 layout: post
 title: "Crawl Budget Là Gì? Tại Sao Site Của Bạn Có Thể Đang Lãng Phí Nó Mà Không Biết"
 slug: crawl-budget-la-gi
-permalink: /crawl-budget-la-gi/
 description: "Crawl budget là gì và tại sao một site ecommerce 50.000 trang chỉ được Google index 8.000? Phân tích kỹ thuật kèm số liệu mới nhất 2026 — bao gồm tác động của AI crawler lên Googlebot mà hầu hết bài viết tiếng Việt chưa đề cập."
 date: 2026-04-11
 readTime: 14
-track: phan-tich
-track_label: Phân Tích
-tags: [crawl-budget, technical-seo, googlebot, seo-2026, crawl]
-pillar: true
-featured: true
+categories: [seo]
+author: Thanh
 ---
 
 Một site ecommerce bán đồ ngoài trời có 50.000 trang sản phẩm. Googlebot crawl đều đặn khoảng 200.000 requests mỗi ngày — nghe có vẻ nhiều. Nhưng kết quả audit cho thấy Google chỉ index được 8.000 trang. Và [42.000 trang sản phẩm thực sự tạo ra doanh thu chỉ được Googlebot ghé thăm mỗi 3 tuần một lần](https://crawlwp.com/crawl-budget-for-seo/).

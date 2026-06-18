@@ -5,6 +5,7 @@ const projectId = process.env.SANITY_PROJECT_ID || 'zscb93sq'
 const dataset = process.env.SANITY_DATASET || 'production'
 const apiVersion = process.env.SANITY_API_VERSION || '2025-01-01'
 const postsDir = '_posts'
+const validCategories = new Set(['seo', 'ai', 'tin-cong-nghe'])
 
 const query = `*[_type == "post" && defined(slug.current)] | order(coalesce(publishedAt, _createdAt) desc) {
   _id,
@@ -13,17 +14,11 @@ const query = `*[_type == "post" && defined(slug.current)] | order(coalesce(publ
   layout,
   title,
   "slug": slug.current,
-  permalink,
   publishedAt,
   description,
   excerpt,
   readTime,
   category,
-  track,
-  trackLabel,
-  tags,
-  pillar,
-  featured,
   body
 }`
 
@@ -78,21 +73,15 @@ console.log(`Sanity sync complete. Posts fetched: ${posts.length}. Files changed
 function buildMarkdown(post, date) {
   const description = post.description || post.excerpt || firstText(post.body) || ''
   const body = portableTextToMarkdown(post.body)
-  const permalink = normalizePermalink(post.permalink || `/${post.slug}/`)
+  const category = normalizeCategory(post.category)
   const frontMatter = [
     ['layout', yamlString(post.layout || 'post')],
     ['title', yamlString(post.title)],
     ['slug', post.slug],
-    ['permalink', permalink],
     ['description', yamlString(description)],
     ['date', date],
     ['readTime', numberOrDefault(post.readTime, 8)],
-    ['category', post.category || 'technical-seo'],
-    ['track', post.track || 'phan-tich'],
-    ['track_label', yamlString(post.trackLabel || 'Phân Tích')],
-    ['tags', yamlArray(post.tags || [])],
-    ['pillar', booleanOrDefault(post.pillar, false)],
-    ['featured', booleanOrDefault(post.featured, false)],
+    ['categories', yamlArray([category])],
     ['author', 'Thanh'],
     ['sanity_id', yamlString(post._id)],
     ['sanity_updated_at', yamlString(post._updatedAt || '')],
@@ -205,6 +194,11 @@ function yamlString(value) {
   return JSON.stringify(String(value || ''))
 }
 
+function normalizeCategory(value) {
+  const category = String(value || '').trim()
+  return validCategories.has(category) ? category : 'seo'
+}
+
 function yamlArray(values) {
   const cleanValues = values.map((value) => String(value || '').trim()).filter(Boolean)
   return `[${cleanValues.map((value) => yamlString(value)).join(', ')}]`
@@ -212,21 +206,6 @@ function yamlArray(values) {
 
 function numberOrDefault(value, fallback) {
   return Number.isFinite(value) ? value : fallback
-}
-
-function booleanOrDefault(value, fallback) {
-  return typeof value === 'boolean' ? value : fallback
-}
-
-function normalizePermalink(value) {
-  const permalink = String(value || '').trim()
-
-  if (!permalink) {
-    return '/'
-  }
-
-  const withLeadingSlash = permalink.startsWith('/') ? permalink : `/${permalink}`
-  return withLeadingSlash.endsWith('/') ? withLeadingSlash : `${withLeadingSlash}/`
 }
 
 function findExistingSanityPost(id) {

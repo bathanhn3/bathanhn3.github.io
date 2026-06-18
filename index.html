@@ -5,13 +5,12 @@ description: "SEO specialist chuyên technical SEO, content strategy, và AI vis
 permalink: /
 ---
 
-{% assign featured_posts = site.posts | where: 'featured', true | sort: 'date' | reverse %}
+{% assign home_hub_keys = 'seo|ai|tin-cong-nghe' | split: '|' %}
 
-<!-- HERO -->
 <section class="hero-home">
   <div class="container">
     <p class="eyebrow">SEO SPECIALIST · TECHNICAL · CONTENT · AI</p>
-    <h1 class="hero-title">Tôi nghiên cứu cách search engine và AI hoạt động — rồi viết lại những gì tôi tìm được</h1>
+    <h1 class="hero-title">Tôi nghiên cứu cách search engine và AI hoạt động, rồi viết lại những gì tôi tìm được</h1>
 
     <div class="hero-stats">
       <div class="stat-card">
@@ -29,106 +28,52 @@ permalink: /
     </div>
 
     <div class="hero-actions">
-      <a class="btn btn-primary" href="{{ '/kien-thuc/' | relative_url }}">Đọc bài mới nhất</a>
-      <a class="btn btn-secondary" href="{{ '/lab/' | relative_url }}">Xem Lab →</a>
+      <a class="btn btn-primary" href="{{ '/seo/' | relative_url }}">Đọc bài SEO</a>
+      <a class="btn btn-secondary" href="{{ '/ai/' | relative_url }}">AI</a>
+      <a class="btn btn-secondary" href="{{ '/tin-cong-nghe/' | relative_url }}">Tin công nghệ</a>
     </div>
   </div>
 </section>
 
-<!-- TOPIC MAP -->
-<section class="section section--topic-map">
+{% for hub_key in home_hub_keys %}
+{% assign hub = site.data.content_hubs[hub_key] %}
+{% assign hub_posts = site.posts | where_exp: 'post', 'post.categories contains hub_key' | sort: 'date' | reverse %}
+<section class="section{% cycle '', ' section--alt', '' %}">
   <div class="container">
-    <p class="eyebrow">Tôi viết về</p>
-    <h2>Chủ đề</h2>
-    <p class="section-sub">Bấm để xem bài theo chủ đề</p>
-    <div class="topic-map">
-      <a class="topic-pill topic-pill--blue" href="{{ '/kien-thuc/' | relative_url }}?category=technical-seo">Technical SEO</a>
-      <a class="topic-pill topic-pill--teal" href="{{ '/kien-thuc/' | relative_url }}?category=content-strategy">Content strategy</a>
-      <a class="topic-pill topic-pill--amber" href="{{ '/kien-thuc/' | relative_url }}?category=seo-automation">SEO automation</a>
-      <a class="topic-pill topic-pill--purple" href="{{ '/kien-thuc/' | relative_url }}?category=ai-seo">AI &amp; LLM visibility</a>
-      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=shopify-seo">Shopify SEO</a>
-      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=crawling-indexing">Crawling &amp; indexing</a>
-      <a class="topic-pill topic-pill--gray" href="{{ '/kien-thuc/' | relative_url }}?category=topical-authority">Topical authority</a>
-    </div>
-  </div>
-</section>
+    <p class="eyebrow">{{ hub.eyebrow }}</p>
+    <h2>{{ hub.title }}</h2>
+    <p class="section-sub">{{ hub.description }}</p>
 
-<!-- LAB -->
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Lab</p>
-    <h2>agrowth.io là nơi tôi test mọi thứ trước khi viết về nó</h2>
-    <div class="lab-grid">
-      {% for exp in site.data.lab limit: 3 %}
-      <article class="lab-card">
-        <div class="lab-card-top">
-          {% if exp.status == 'live' %}
-          <span class="status-badge status-badge--live">✓ Live</span>
-          {% elsif exp.status == 'running' %}
-          <span class="status-badge status-badge--running">● Đang chạy</span>
-          {% else %}
-          <span class="status-badge status-badge--planned">○ Kế hoạch</span>
-          {% endif %}
-        </div>
-        <h3>{{ exp.title }}</h3>
-        <p class="lab-hypothesis">{{ exp.hypothesis }}</p>
-        {% if exp.result %}
-        <p class="lab-result">{{ exp.result }}</p>
-        {% endif %}
-        {% if exp.started %}
-        <p class="lab-meta">Bắt đầu: {{ exp.started }}{% if exp.expected %} · Dự kiến: {{ exp.expected }}{% endif %}</p>
-        {% endif %}
-        {% if exp.related_post != '' and exp.related_post %}
-        <a class="lab-link" href="{{ exp.related_post }}">Đọc bài liên quan →</a>
-        {% endif %}
-      </article>
-      {% endfor %}
-    </div>
-    <p style="margin-top: 1.2rem;"><a class="btn btn-secondary" href="{{ '/lab/' | relative_url }}">Xem tất cả →</a></p>
-  </div>
-</section>
-
-<!-- TEARDOWNS -->
-<section class="section section--alt">
-  <div class="container">
-    <p class="eyebrow">Teardowns</p>
-    <h2>Tôi mổ xẻ các SEO strategy đáng học hỏi</h2>
-    <div class="teardown-featured">
-      <p class="teardown-label">TEARDOWN #01</p>
-      <h3>Shopify Blog: Cách một thương hiệu e-commerce build topical authority từ số 0</h3>
-      <div class="teardown-topics">
-        <span class="topic-tag">topical-authority</span>
-        <span class="topic-tag">internal-linking</span>
-        <span class="topic-tag">content-velocity</span>
-      </div>
-      <a class="btn btn-secondary" href="{{ '/teardowns/' | relative_url }}" style="margin-top: 1rem; display: inline-flex;">Sắp ra mắt →</a>
-    </div>
-  </div>
-</section>
-
-<!-- FEATURED ARTICLES -->
-<section class="section">
-  <div class="container">
-    <p class="eyebrow">Bài viết nổi bật</p>
-    <h2>Bài viết nên đọc trước</h2>
     <ul class="article-list">
-      {% for post in featured_posts limit: 4 %}
+      {% for post in hub_posts limit: 3 %}
       <li class="article-item">
         <div class="article-item-meta">
-          <span class="article-category">{{ post.category | default: 'Technical SEO' }}</span>
-          {% if post.format %}
-          <span class="article-format">{{ post.format }}</span>
-          {% endif %}
+          <span class="article-category">{{ hub.label }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
         </div>
-        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <h3 class="article-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        {% if post.description %}
+        <p class="article-desc">{{ post.description }}</p>
+        {% endif %}
+      </li>
+      {% else %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">{{ hub.label }}</span>
+        </div>
+        <h3 class="article-title">Đang cập nhật</h3>
+        <p class="article-desc">{{ hub.empty }}</p>
       </li>
       {% endfor %}
     </ul>
-    <p style="margin-top: 1.2rem;"><a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">Xem tất cả bài viết →</a></p>
+
+    <p style="margin-top: 1.2rem;">
+      <a class="btn btn-secondary" href="{{ hub.url | relative_url }}">Xem tất cả</a>
+    </p>
   </div>
 </section>
+{% endfor %}
 
-<!-- AI CITATION SIGNAL -->
 <section class="ai-citation-bar">
   <div class="container">
     <span class="ai-citation-text">Nội dung trên site này được tham chiếu bởi</span>
@@ -138,7 +83,6 @@ permalink: /
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="section section--alt">
   <div class="container about-mini">
     <div class="about-avatar">T</div>

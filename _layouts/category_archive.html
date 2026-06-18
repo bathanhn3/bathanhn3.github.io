@@ -1,0 +1,41 @@
+---
+layout: default
+---
+{% assign category_key = page.category_key | default: 'seo' %}
+{% assign hub = site.data.content_hubs[category_key] %}
+{% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains category_key' | sort: 'date' | reverse %}
+
+<section class="track-hero">
+  <div class="container">
+    <p class="eyebrow">{{ hub.eyebrow | default: category_key }}</p>
+    <h1>{{ page.heading | default: hub.title }}</h1>
+    <p>{{ page.description | default: hub.description }}</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 1.5rem;">
+  <div class="container">
+    <ul class="article-list article-list--full">
+      {% for post in category_posts %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">{{ hub.label | default: category_key }}</span>
+          <span class="post-date">{{ post.date | date: '%d/%m/%Y' }}</span>
+        </div>
+        <h2 class="article-title"><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+        {% if post.description %}
+        <p class="article-desc">{{ post.description }}</p>
+        {% endif %}
+      </li>
+      {% else %}
+      <li class="article-item">
+        <div class="article-item-meta">
+          <span class="article-category">{{ hub.label | default: category_key }}</span>
+        </div>
+        <h2 class="article-title">Đang cập nhật</h2>
+        <p class="article-desc">{{ hub.empty | default: 'Bài viết mới đang được cập nhật.' }}</p>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>

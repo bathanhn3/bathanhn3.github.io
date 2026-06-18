@@ -2,7 +2,11 @@
 layout: default
 ---
 {% assign all_posts = site.posts | sort: 'date' | reverse %}
-{% assign related_posts = all_posts | where: 'category', page.category | where_exp: 'post', 'post.url != page.url' %}
+{% assign category_key = page.categories | first | default: 'seo' %}
+{% assign hub = site.data.content_hubs[category_key] %}
+{% assign related_posts = all_posts | where_exp: 'post', 'post.categories contains category_key' | where_exp: 'post', 'post.url != page.url' %}
+{% assign hub_url = hub.url | default: '/seo/' %}
+{% assign hub_label = hub.label | default: 'Làm SEO' %}
 
 <article class="post-page">
   <header class="post-header">
@@ -10,20 +14,11 @@ layout: default
       <p class="eyebrow">
         <a href="{{ '/' | relative_url }}">Home</a>
         <span>/</span>
-        <a href="{{ '/kien-thuc/' | relative_url }}">Kiến thức</a>
-        {% if page.category %}
-        <span>/</span>
-        <span>{{ page.category | replace: '-', ' ' | capitalize }}</span>
-        {% endif %}
+        <a href="{{ hub_url | relative_url }}">{{ hub_label }}</a>
       </p>
 
       <div class="post-header-top">
-        {% if page.category %}
-        <span class="post-category-badge">{{ page.category | replace: '-', ' ' | upcase }}</span>
-        {% endif %}
-        {% if page.format %}
-        <span class="post-format-badge">{{ page.format }}</span>
-        {% endif %}
+        <span class="post-category-badge">{{ hub_label }}</span>
       </div>
 
       <h1>{{ page.title }}</h1>
@@ -63,8 +58,8 @@ layout: default
         </article>
         {% else %}
         <article class="card">
-          <h3><a href="{{ '/kien-thuc/' | relative_url }}">Xem tất cả bài viết</a></h3>
-          <p>Khám phá thêm các bài viết về SEO.</p>
+          <h3><a href="{{ hub_url | relative_url }}">Xem tất cả bài viết</a></h3>
+          <p>Khám phá thêm các bài viết trong mục {{ hub_label }}.</p>
         </article>
         {% endfor %}
       </div>
@@ -77,14 +72,14 @@ layout: default
         {% if page.next %}
         <a class="btn btn-secondary" href="{{ page.next.url | relative_url }}">&larr; Bài trước</a>
         {% else %}
-        <a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">&larr; Kiến thức</a>
+        <a class="btn btn-secondary" href="{{ hub_url | relative_url }}">&larr; {{ hub_label }}</a>
         {% endif %}
       </div>
       <div>
         {% if page.previous %}
         <a class="btn btn-secondary" href="{{ page.previous.url | relative_url }}">Bài tiếp &rarr;</a>
         {% else %}
-        <a class="btn btn-secondary" href="{{ '/kien-thuc/' | relative_url }}">Kiến thức &rarr;</a>
+        <a class="btn btn-secondary" href="{{ hub_url | relative_url }}">{{ hub_label }} &rarr;</a>
         {% endif %}
       </div>
     </div>

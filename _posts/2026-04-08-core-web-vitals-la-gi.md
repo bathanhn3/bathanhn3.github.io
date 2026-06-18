@@ -2,13 +2,11 @@
 layout: post
 title: "Core Web Vitals là gì? Hướng Dẫn Toàn Diện Từ A đến Z (Kèm Phân Tích Cá Nhân)"
 slug: core-web-vitals-la-gi
-permalink: /technical-seo/core-web-vitals-la-gi/
 description: "Core Web Vitals là gì và tại sao Google dùng chúng để xếp hạng website? Hướng dẫn đầy đủ về LCP, CLS, INP kèm cách đo lường, cải thiện và góc nhìn phân tích độc lập."
 date: 2025-04-08
 readTime: 14
-category: technical-seo
-format: deep-dive
-featured: true
+categories: [seo]
+author: Thanh
 ---
 
 Bounce rate tăng 32% chỉ vì trang web chậm hơn 2 giây.

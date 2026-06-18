@@ -1,27 +1,30 @@
-﻿# Thành Labs
+# Thành SEO
 
-Blog ca nhan ve cong nghe theo huong **Learn - Build - Explain**.
+Personal Jekyll site for SEO, AI, and tech writing.
 
 ## Site structure
 
-- `/` homepage hub
-- `/hoc/`
-- `/giai-thich/`
-- `/xay-dung/`
-- `/phan-tich/`
-- `/goc-nhin/`
-- `/blog/`
+- `/` homepage with content sections by hub
+- `/seo/`
+- `/ai/`
+- `/tin-cong-nghe/`
+- `/about/`
+
+Posts use one primary Jekyll category:
+
+```yaml
+categories: [seo]
+```
+
+Allowed categories are `seo`, `ai`, and `tin-cong-nghe`. Post URLs are generated from `_config.yml` as `/:categories/:slug/`.
 
 ## Tech
 
 - Jekyll static site
 - GitHub Pages deploy
-- Search index: `/search.json` + client-side filtering
+- Search index: `/search.json`
 
 ## Local run
 
 1. `bundle install`
 2. `bundle exec jekyll serve`
-
-Neu gap loi Jekyll tren Ruby moi, dung Ruby/Jekyll version tuong thich voi GitHub Pages.
-
