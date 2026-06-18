@@ -1,6 +1,6 @@
 ---
 layout: "post"
-title: "Crawl Budget Là Gì? Đổi lại title"
+title: "Crawl Budget Là Gì? Tại Sao Site Của Bạn Có Thể Đang Lãng Phí Nó Mà Không Biết"
 slug: crawl-budget-la-gi-sanity
 description: "Một site ecommerce bán đồ ngoài trời có 50.000 trang sản phẩm. Googlebot crawl đều đặn khoảng 200.000 requests mỗi ngày — nghe có vẻ nhiều. Nhưng kết quả audit cho thấy Google c..."
 date: 2026-05-14
