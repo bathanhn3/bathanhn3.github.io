@@ -5,11 +5,10 @@ slug: crawl-budget-la-gi-sanity
 description: "Một site ecommerce bán đồ ngoài trời có 50.000 trang sản phẩm. Googlebot crawl đều đặn khoảng 200.000 requests mỗi ngày — nghe có vẻ nhiều. Nhưng kết quả audit cho thấy Google c..."
 date: 2026-05-14
 readTime: 8
-categories: [seo]
+categories: ["seo"]
 author: Thanh
-published: false
 sanity_id: "52f0be08-781f-4ea4-a9cd-4e817d0bf3c7"
-sanity_updated_at: "2026-05-14T09:09:48Z"
+sanity_updated_at: "2026-06-18T09:26:28Z"
 ---
 
 Một site ecommerce bán đồ ngoài trời có 50.000 trang sản phẩm. Googlebot crawl đều đặn khoảng 200.000 requests mỗi ngày — nghe có vẻ nhiều. Nhưng kết quả audit cho thấy Google chỉ index được 8.000 trang. Và [42.000 trang sản phẩm thực sự tạo ra doanh thu chỉ được Googlebot ghé thăm mỗi 3 tuần một lần](https://crawlwp.com/crawl-budget-for-seo/).
