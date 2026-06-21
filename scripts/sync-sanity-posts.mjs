@@ -22,7 +22,7 @@ const query = `*[_type == "post" && defined(slug.current)] | order(coalesce(publ
   body
 }`
 
-const url = `https://${projectId}.apicdn.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`
+const url = `https://${projectId}.api.sanity.io/v${apiVersion}/data/query/${dataset}?query=${encodeURIComponent(query)}`
 
 const response = await fetch(url)
 
